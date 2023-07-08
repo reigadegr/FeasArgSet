@@ -30,10 +30,19 @@ void GetSecondArg(std::string &buf,std::string& secondArg){
     //LOG(tmp," : ",secondArg);
 }
 
-bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game,FeasPath &feaspath,std::string &gov)
+bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game,FeasPath &feaspath,std::string &gov, std::string &now_package)
 {
     std::string FgApp = getTopApp();
     LOG("前台包名: ",FgApp);
+    
+    if(FgApp == now_package)
+    {
+        LOG("包名匹配，提前结束");
+        return true;
+    }
+    
+    now_package = FgApp;
+    
     int tmp_i = 0;
     //打印包名
     for (const auto& game : gamesaver)

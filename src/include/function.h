@@ -14,7 +14,7 @@ std::string execCmdSync(const std::string &command, const std::vector<std::strin
 std::string getTopApp();
 
 
-bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game,FeasPath &feaspath,std::string &gov);
+bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game,FeasPath &feaspath,std::string &gov, std::string &now_package);
 
 
 

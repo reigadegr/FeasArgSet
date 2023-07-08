@@ -37,9 +37,9 @@ int main(int argc, char * argv[])
     init_gov(gov);
     recover_freq();
     
-    
+    std::string now_package = "";
     while(true){
-        matching_start(gamesaver, middle_big_core_in_game, feaspath,gov);
+        matching_start(gamesaver, middle_big_core_in_game, feaspath,gov, now_package);
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 }
