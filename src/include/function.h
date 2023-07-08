@@ -5,7 +5,7 @@ void set_middle_big_gov(std::string gov);
 
 //readFile
 bool readProfile(const char *profile, std::vector<listGame> &profit,std::string &middle_big_core_in_game, std::string &little_core_gov);
-bool readPathProfile(const char *pathProfile,std::string &Fps_path, std::string &Feas_switch, std::string & scaling_a, std::string & scaling_b);
+bool readPathProfile(const char *pathProfile,std::string &Feas_switch, std::string &Fps_path, std::string & scaling_a, std::string & scaling_b);
 
 bool Get1To2(std::string input,std::string output);
 

@@ -53,7 +53,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
             //成功后把结构体内各个对象的值写入到指定路径
             //...
             Feas_on(game.fixed_target_fps,game.scaling_a,game.scaling_b,feaspath.Feas_switch,feaspath.Fps,feaspath.scaling_a, feaspath.scaling_b);
-            
+            //LOG("目标fps\n",game.fixed_target_fps,"\nscaling a:\n",game.scaling_a,"\nscal_b: \n",game.scaling_b,"\n开关路径:\n",feaspath.Feas_switch,"\nfps路径\n",feaspath.Fps,"\n",feaspath.scaling_a,"\n", feaspath.scaling_b);
             set_middle_big_gov(middle_big_core_in_game);
             tmp_i = 1;
             break;

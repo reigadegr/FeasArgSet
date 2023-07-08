@@ -70,7 +70,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,std::string 
 
 
 
-bool readPathProfile(const char *pathProfile,std::string &Fps_path, std::string &Feas_switch, std::string & scaling_a, std::string & scaling_b)
+bool readPathProfile(const char *pathProfile,std::string &Feas_switch, std::string &Fps_path, std::string & scaling_a, std::string & scaling_b)
 {
     std::ifstream file(pathProfile);
     
