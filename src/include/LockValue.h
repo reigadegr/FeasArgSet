@@ -6,12 +6,33 @@
 #include <sys/stat.h>
 #include <string>
 #include <sstream>
+#include "function.h"
+/*
+template <typename T>
+std::string to_string_custom(T value) {
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
+*/
+
 template <typename T>
 static void lock_val(T value, const std::string &path){
 
     if (access(path.c_str(), F_OK) == -1) 
         return;
     umount(path.c_str());
+    /*
+    std::ifstream check(path);
+    std::string test_val;
+    std::getline(check, test_val);
+    check.close();
+    if (test_val == to_string_custom(value))
+    {
+        LOG("值相同直接返回");
+        return;
+    }
+    */
     
     //chown(path.c_str(), 0, 0);
     chmod(path.c_str(), 0666);
