@@ -37,12 +37,14 @@ std::string getTopApp()
         if (!f_pid)
             return {};
         f_pid >> pid;
-
+        f_pid.close();
+        
         app.open("/proc/" + pid + "/cmdline");
         if (!app)
             return {};
         std::getline(app, name, '\0');
-
+        app.close();
+        
         return name;
     }
     const std::string str = execCmdSync("/system/bin/dumpsys", {"window", "visible-apps"});
