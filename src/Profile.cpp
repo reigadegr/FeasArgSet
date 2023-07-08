@@ -23,12 +23,14 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,std::string 
                 std::istringstream iss(buf.substr(1)); // 去掉$符号
                 iss >> middle_big_core_in_game;
                 LOG("游戏中中大核调速器为: ",middle_big_core_in_game);
+                continue;
             }
             
             if(buf[0] == '&')
             {
                 std::istringstream iss2(buf.substr(1));
                 iss2 >> little_core_gov;
+                continue;
             }
             
             if (buf[0] != '#' && buf[0] != '$' && buf[0] != '&')
