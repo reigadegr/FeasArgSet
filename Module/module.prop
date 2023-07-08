@@ -3,4 +3,4 @@ name=FeasArgSetHelper
 version=v1
 versionCode=1
 author=
-description=自定义小米Feas相关参数(大部分通过抄袭shadow3大佬的feashelper实现)
+description=自定义小米Feas相关参数
