@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <thread>
 #include "include/function.h"
 #include "include/LockValue.h"
 //#include "include/GameList.h"
@@ -68,4 +69,12 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
         init_gov(gov);
     }
     return true;
+}
+
+void matchingThread(std::vector<listGame> gamesaver, std::string& middle_big_core_in_game, FeasPath& feaspath, std::string& gov, std::string& now_package)
+{
+    while (true) {
+        matching_start(gamesaver, middle_big_core_in_game, feaspath, gov, now_package);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    }
 }

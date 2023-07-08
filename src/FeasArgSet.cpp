@@ -38,9 +38,14 @@ int main(int argc, char * argv[])
     recover_freq();
     
     std::string now_package = "";
+    /*
     while(true){
         matching_start(gamesaver, middle_big_core_in_game, feaspath,gov, now_package);
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
+    */
+    
+    std::thread t(matchingThread, gamesaver, std::ref(middle_big_core_in_game), std::ref(feaspath), std::ref(gov), std::ref(now_package));
+    t.join();
 }
 

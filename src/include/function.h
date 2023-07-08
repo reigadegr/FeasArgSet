@@ -13,9 +13,9 @@ bool Get1To2(std::string input,std::string output);
 std::string execCmdSync(const std::string &command, const std::vector<std::string> &args);
 std::string getTopApp();
 
-
+//running 
 bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game,FeasPath &feaspath,std::string &gov, std::string &now_package);
-
+void matchingThread(std::vector<listGame> gamesaver, std::string& middle_big_core_in_game, FeasPath& feaspath, std::string& gov, std::string& now_package);
 
 
 void init_gov(std::string &gov);
