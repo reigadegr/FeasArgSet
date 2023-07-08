@@ -8,6 +8,8 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,std::string 
 bool readPathProfile(const char *pathProfile,std::string &Fps_path, std::string &Feas_switch, std::string & scaling_a, std::string & scaling_b);
 
 bool Get1To2(std::string input,std::string output);
+
+//get fg APP name
 std::string execCmdSync(const std::string &command, const std::vector<std::string> &args);
 std::string getTopApp();
 
@@ -18,12 +20,12 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
 
 void init_gov(std::string &gov);
 void recover_freq();
-bool Get1To2(std::string input,std::string output);
 
 void GetSecondArg(std::string &buf,std::string& secondArg);
 
 void Feas_off(std::string Feas_switch,std::string fps_path,std::string scaling_a_path,std::string scaling_b_path);
 void Feas_on(unsigned int fps,int scaling_a,int scaling_b,std::string Feas_switch,std::string fps_path,std::string scaling_a_path, std::string scaling_b_path);
+
 template <typename T>
 void lock_val(T value, const std::string &path);
 
