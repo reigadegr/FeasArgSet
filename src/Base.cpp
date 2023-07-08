@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include "include/function.h"
+#include "include/LockValue.h"
 //#include "include/GameList.h"
 //把第一个节点的值写到另一个节点
 bool Get1To2(std::string input,std::string output)

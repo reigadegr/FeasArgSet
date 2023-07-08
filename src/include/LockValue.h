@@ -7,7 +7,7 @@
 #include <string>
 #include <sstream>
 template <typename T>
-void lock_val(T value, const std::string &path){
+static void lock_val(T value, const std::string &path){
 
     if (access(path.c_str(), F_OK) == -1) 
         return;
