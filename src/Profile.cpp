@@ -81,19 +81,26 @@ bool readPathProfile(const char *pathProfile,std::string &Fps_path, std::string 
         if(!buf.empty() && buf[0] != '#')
         {
             if(buf.find("Feas_switch_path") != std::string::npos)
+            {
                 GetSecondArg(buf,Feas_switch);
-            
+                continue;
+            }
         
             if(buf.find("Fps_Path") != std::string::npos)
-                GetSecondArg(buf,Fps_path);
-            
-            
-            if(buf.find("Scaling_a_path") != std::string::npos)   
+            {   GetSecondArg(buf,Fps_path);
+                continue;
+            }
+            if(buf.find("Scaling_a_path") != std::string::npos)
+            {
                 GetSecondArg(buf,scaling_a);
-            
+                continue;
+            }
             
             if(buf.find("Scaling_b_path") != std::string::npos)
-                GetSecondArg(buf,scaling_b);         
+            {
+                GetSecondArg(buf,scaling_b);
+                continue;
+            }
         }
     }
     return true;
