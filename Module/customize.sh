@@ -1,6 +1,6 @@
 SKIPUNZIP=0
 MODDIR=${0%/*}
-cat $MODDIR/ReadMe.md |
+cat $MODDIR/README.md |
     while read row; do
         echo $row
         sleep 0.15
