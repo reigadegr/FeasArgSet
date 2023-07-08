@@ -1,5 +1,5 @@
 #!/bin/sh
-rm $(dirname "$0")/*.bak
+rm -rf $(dirname "$0")/*.bak
 /data/data/com.termux/files/usr/bin/git add .
 
 /data/data/com.termux/files/usr/bin/git commit -m "$1"
