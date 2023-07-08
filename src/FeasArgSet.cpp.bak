@@ -4,6 +4,8 @@
 #include <vector>
 #include "include/LockValue.h"
 #include "include/function.h"
+#include "include/GameList.h"
+#include "include/Path.h"
 
 int main(int argc, char * argv[])
 {
