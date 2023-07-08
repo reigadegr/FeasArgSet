@@ -24,5 +24,5 @@ void GetSecondArg(std::string &buf,std::string& secondArg){
     std::istringstream iss(buf);
     std::string tmp;
     iss >> tmp >> secondArg;
-    LOG(tmp," : ",secondArg);
+    //LOG(tmp," : ",secondArg);
 }

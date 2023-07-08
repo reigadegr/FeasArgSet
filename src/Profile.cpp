@@ -22,7 +22,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,std::string 
             {
                 std::istringstream iss(buf.substr(1)); // 去掉$符号
                 iss >> middle_big_core_in_game;
-                LOG("调速器为: ",middle_big_core_in_game);
+                LOG("游戏中中大核调速器为: ",middle_big_core_in_game);
             }
             
             if(buf[0] == '&')
@@ -35,10 +35,10 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,std::string 
             {
                 std::istringstream iss(buf);
                 listGame tmpmsg;
-                std::string name = tmpmsg.name;
-                unsigned int fps = tmpmsg.fixed_target_fps;
-                int scaling_a = tmpmsg.scaling_a;
-                int scaling_b = tmpmsg.scaling_b;
+                std::string name = tmpmsg.name = "";
+                unsigned int fps = tmpmsg.fixed_target_fps = 60;
+                int scaling_a = tmpmsg.scaling_a = 0;
+                int scaling_b = tmpmsg.scaling_b = 0;
                                 
                 if (iss >> name >> fps >> scaling_a >> scaling_b)
                 {

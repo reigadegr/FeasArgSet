@@ -11,4 +11,4 @@ cd ../src
     
     
     remove_file 2>/dev/null
-    mv -f $(dirname "$0")/FeasArgSet  ../Module
+    mv -f $(dirname "$0")/FeasArgSet  ../Module/FeasArgSet
