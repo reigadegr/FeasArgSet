@@ -62,12 +62,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,std::string 
     
     return true;
 }
-void GetSecondArg(std::string &buf,std::string& secondArg){
-    std::istringstream iss(buf);
-    std::string tmp;
-    iss >> tmp >> secondArg;
-    LOG(tmp," : ",secondArg);
-}
+
 
 
 bool readPathProfile(const char *pathProfile,std::string &Fps_path, std::string &Feas_switch, std::string & scaling_a, std::string & scaling_b)
