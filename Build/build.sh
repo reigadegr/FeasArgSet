@@ -1,6 +1,6 @@
 #!/bin/sh
 remove_file(){
-    rm -rf $(pwd)/*.bak $(pwd)/include/*.bak $(pwd)/config/*.bak
+    rm -rf $(pwd)/*.bak $(pwd)/include/*.bak $(pwd)/config/*.bak $(dirname "$0")/*.bak
 }
 
 
@@ -11,4 +11,5 @@ cd ../src
     
     
     remove_file 2>/dev/null
-    mv -f $(dirname "$0")/FeasArgSet  ../Module/FeasArgSet
+    cp -f $(dirname "$0")/FeasArgSet  ../Module/FeasArgSet
+    mv -f $(dirname "$0")/FeasArgSet  ../src/FeasArgSet
