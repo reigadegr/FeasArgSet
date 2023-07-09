@@ -16,12 +16,12 @@ int main(int argc, char * argv[])
     //实例化FeasPath的对象feaspath
     readPathProfile(pathProfile, feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b);
     
-    if (access(feaspath.Feas_switch.c_str(), F_OK) == -1) 
+    if (access(feaspath.Feas_switch.c_str(), F_OK) == -1){
+        LOG("节点不存在。请检查设备是否支持Feas功能，节点是否设置正确");
+        LOG("进程已结束");
         return -1;
-        /*
-    else 
-        LOG("节点存在");
-        */
+    }
+        
     //设置游戏默认中大核调速器(默认值)
     std::string middle_big_core_in_game = "performance";
     
@@ -35,7 +35,7 @@ int main(int argc, char * argv[])
     
     if(!ReadProfile)
     {
-        LOG("读取文件失败");
+        LOG("读取文件失败，进程结束");
         return 1;
     }
     

@@ -63,8 +63,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,std::string 
             }
         }
     }
-    file.close();
-    
+    file.close();    
     return true;
 }
 
