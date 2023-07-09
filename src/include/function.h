@@ -38,7 +38,7 @@ void Feas_on(unsigned int fps, int scaling_a, int scaling_b,
              std::string Feas_switch, std::string fps_path,
              std::string scaling_a_path, std::string scaling_b_path);
 
-template <typename... Args> static inline void LOG(const Args &...args);
+template <typename... Args> static void LOG(const Args &...args);
 
 template <typename... Args> static void LOG(const Args &...args) {
     const auto printArg = [&](const auto &arg) { std::cout << arg; };
