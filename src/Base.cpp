@@ -34,21 +34,28 @@ void GetSecondArg(std::string &buf,std::string& secondArg){
 bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game,FeasPath &feaspath,std::string &gov, std::string &now_package)
 {
     std::string FgApp = getTopApp();
-    LOG("前台包名: ",FgApp);
-    
+    //LOG("前台包名: ",FgApp);
+    /*
     if(FgApp == now_package)
     {
-        LOG("包名匹配，提前结束");
+        //LOG("包名匹配，提前结束");
         return true;
     }
+    */
+    if(FgApp == now_package)
+    {
+        //LOG("包名匹配，提前结束");
+        return true;
+    }
+    
     
     now_package = FgApp;
     
     //打印包名
     for (const auto& game : gamesaver)
     {        
-        if(FgApp == game.name){
-            LOG("成功匹配");
+        if(FgApp.find(game.name) != std::string::npos){
+            LOG("检测到列表游戏  : ",game.name);
             //成功后把结构体内各个对象的值写入到指定路径
             //...
             Feas_on(game.fixed_target_fps,game.scaling_a,game.scaling_b,feaspath.Feas_switch,feaspath.Fps,feaspath.scaling_a, feaspath.scaling_b);
@@ -59,6 +66,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
     }
     
     //LOG("失败匹配");
+    LOG("检测到非列表应用: ",FgApp);
     Feas_off(feaspath.Feas_switch,feaspath.Fps,feaspath.scaling_a,feaspath.scaling_b);
     recover_freq();
     init_gov(gov);
