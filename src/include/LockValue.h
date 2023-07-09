@@ -14,6 +14,19 @@ template <typename T> static void lock_val(T value, const std::string &path) {
         return;
     umount(path.c_str());
 
+    std::ifstream test(path);
+    if (!test)
+        return;
+
+    T temp;
+    test >> temp;
+    test.close();
+
+    if (temp == value) {
+        // LOG("值相同");
+        return;
+    }
+
     // chown(path.c_str(), 0, 0);
     chmod(path.c_str(), 0666);
     // target_file:path 对象
