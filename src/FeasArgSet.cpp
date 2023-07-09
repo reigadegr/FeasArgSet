@@ -16,6 +16,11 @@ int main(int argc, char * argv[])
     //实例化FeasPath的对象feaspath
     readPathProfile(pathProfile, feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b);
     
+    if (access(feaspath.Feas_switch.c_str(), F_OK) == -1) 
+        return -1;
+    else 
+        LOG("节点存在");
+        
     //设置游戏默认中大核调速器(默认值)
     std::string middle_big_core_in_game = "performance";
     
