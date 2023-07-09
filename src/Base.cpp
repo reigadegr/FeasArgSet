@@ -4,8 +4,10 @@
 #include <iostream>
 #include <sstream>
 #include <thread>
+
 #include <vector>
 // #include "include/GameList.h"
+
 // 把第一个节点的值写到另一个节点
 bool Get1To2(std::string input, std::string output) {
     std::ifstream input_path(input);
