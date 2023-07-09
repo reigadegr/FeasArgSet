@@ -47,6 +47,7 @@ int main(int argc, char * argv[])
     
     
     std::thread t(matchingThread, gamesaver, std::ref(middle_big_core_in_game), std::ref(feaspath), std::ref(gov), std::ref(now_package));
+    
     t.join();
 }
 
