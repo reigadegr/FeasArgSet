@@ -1,6 +1,5 @@
 #include "include/LockValue.h"
 #include <iostream>
-// #include "include/function.h"
 
 void init_gov(std::string &gov) {
     for (int i = 0; i <= 7; i++) {

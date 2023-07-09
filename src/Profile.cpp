@@ -92,5 +92,6 @@ bool readPathProfile(const char *pathProfile, std::string &Feas_switch,
             }
         }
     }
+    file.close();
     return true;
 }
