@@ -27,6 +27,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,
             if (buf[0] == '&') {
                 std::istringstream iss2(buf.substr(1));
                 iss2 >> little_core_gov;
+                LOG("普通APP全局调速器为: ", little_core_gov);
                 continue;
             }
 
