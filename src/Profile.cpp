@@ -89,7 +89,8 @@ bool readPathProfile(const char *pathProfile,std::string &Feas_switch, std::stri
             }
         
             if(buf.find("Fps_Path") != std::string::npos)
-            {   GetSecondArg(buf,Fps_path);
+            {   
+                GetSecondArg(buf,Fps_path);
                 continue;
             }
             if(buf.find("Scaling_a_path") != std::string::npos)
