@@ -1,9 +1,9 @@
+#include "include/function.h"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <unistd.h>
 #include <vector>
-
 std::string execCmdSync(const std::string &command,
                         const std::vector<std::string> &args) {
     // 将命令和参数拼接为一个字符串
@@ -46,6 +46,14 @@ std::string getTopApp() {
         std::getline(app, name, '\0');
         app.close();
 
+        if (name.find(":") != std::string::npos) {
+
+            // 获取冒号的位置
+            unsigned int colonPos = name.find(':');
+
+            // 截取冒号前边的部分
+            name = name.substr(0, colonPos);
+        }
         return name;
     }
     const std::string str =
