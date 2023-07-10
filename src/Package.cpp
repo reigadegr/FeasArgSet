@@ -47,10 +47,8 @@ std::string getTopApp() {
         app.close();
 
         if (name.find(":") != std::string::npos) {
-
             // 获取冒号的位置
             unsigned int colonPos = name.find(':');
-
             // 截取冒号前边的部分
             name = name.substr(0, colonPos);
         }
@@ -66,6 +64,13 @@ std::string getTopApp() {
     const auto first = name.find_first_not_of(" ");
     const auto last = name.find_last_not_of(" ");
     name = name.substr(first, last - first + 1);
+
+    if (name.find(":") != std::string::npos) {
+        // 获取冒号的位置
+        unsigned int colonPos = name.find(':');
+        // 截取冒号前边的部分
+        name = name.substr(0, colonPos);
+    }
 
     return name;
 }
