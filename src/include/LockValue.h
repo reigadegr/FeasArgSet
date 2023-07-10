@@ -14,9 +14,8 @@ template <typename T> static void lock_val(T value, const std::string &path) {
         return;
     umount(path.c_str());
 
+    // check value
     std::ifstream test(path);
-    if (!test)
-        return;
 
     T temp;
     test >> temp;
@@ -26,6 +25,7 @@ template <typename T> static void lock_val(T value, const std::string &path) {
         // LOG("值相同");
         return;
     }
+    // check done
 
     // chown(path.c_str(), 0, 0);
     chmod(path.c_str(), 0666);
@@ -42,6 +42,7 @@ template <typename T> static void lock_val(T value, const std::string &path) {
 
     chmod(path.c_str(), 0444);
 
+    // mask value
     /*
     const std::string mask_dir = "/data/local/tmp";
     const std::string mount_mask_file = mask_dir + "/mount_mask_" +

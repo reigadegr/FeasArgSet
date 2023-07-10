@@ -7,7 +7,7 @@
 
 bool readProfile(const char *profile, std::vector<listGame> &profit,
                  std::string &middle_big_core_in_game,
-                 std::string &little_core_gov) {
+                 std::string &global_gov) {
     std::ifstream file(profile);
 
     if (!file.is_open())
@@ -20,14 +20,14 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,
             if (buf[0] == '$') {
                 std::istringstream iss(buf.substr(1)); // 去掉$符号
                 iss >> middle_big_core_in_game;
-                LOG("游戏中中大核调速器为: ", middle_big_core_in_game);
+                LOG("游戏内中大核调速器为: ", middle_big_core_in_game);
                 continue;
             }
 
             if (buf[0] == '&') {
                 std::istringstream iss2(buf.substr(1));
-                iss2 >> little_core_gov;
-                LOG("普通APP全局调速器为: ", little_core_gov);
+                iss2 >> global_gov;
+                LOG("普通APP全局调速器为: ", global_gov);
                 continue;
             }
 

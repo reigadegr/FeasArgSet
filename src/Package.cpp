@@ -3,7 +3,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <vector>
-// using namespace std;
+
 std::string execCmdSync(const std::string &command,
                         const std::vector<std::string> &args) {
     // 将命令和参数拼接为一个字符串

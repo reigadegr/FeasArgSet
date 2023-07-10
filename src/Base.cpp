@@ -4,9 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <thread>
-
 #include <vector>
-// #include "include/GameList.h"
 
 // 把第一个节点的值写到另一个节点
 bool Get1To2(std::string input, std::string output) {
@@ -47,7 +45,7 @@ bool matching_start(std::vector<listGame> gamesaver,
     // 打印包名
     for (const auto &game : gamesaver) {
         if (FgApp.find(game.name) != std::string::npos) {
-            LOG("检测到列表游戏  : ", game.name);
+            LOG("检测到列表应用  : ", game.name);
             // 成功后把结构体内各个对象的值写入到指定路径
             //...
             Feas_on(game.fixed_target_fps, game.scaling_a, game.scaling_b,
