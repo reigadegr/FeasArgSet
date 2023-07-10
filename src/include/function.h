@@ -14,7 +14,7 @@ bool readProfile(const char *profile, std::list<listGame> &profit,
 bool readPathProfile(const char *pathProfile, std::string &Feas_switch,
                      std::string &Fps_path, std::string &scaling_a,
                      std::string &scaling_b);
-
+auto Testfile(const char *location);
 bool Get1To2(std::string input, std::string output);
 
 // get fg APP name
@@ -22,7 +22,7 @@ std::string execCmdSync(const std::string &command,
                         const std::vector<std::string> &args);
 std::string getTopApp();
 std::string getTopAppShell();
-
+std::string checkSymbol(std::string &name);
 // running
 bool matching_start(std::list<listGame> gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,

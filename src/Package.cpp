@@ -25,14 +25,15 @@ std::string execCmdSync(const std::string &command,
     pclose(pipe);
     return result;
 }
-
+auto Testfile(const char *location) { return access(location, F_OK) == 0; }
 std::string getTopApp() {
+    /*
     auto Testfile = [](const char *location) {
         return access(location, F_OK) == 0;
     };
-    std::string name;
+    */
     if (Testfile("/sys/kernel/gbe/gbe2_fg_pid")) {
-        std::string pid;
+        std::string pid, name;
         std::ifstream f_pid, app;
         f_pid.open("/sys/kernel/gbe/gbe2_fg_pid");
         if (!f_pid) {
@@ -50,17 +51,11 @@ std::string getTopApp() {
         std::getline(app, name, '\0');
         app.close();
 
-        if (name.find(":") != std::string::npos) {
-            // 获取冒号的位置
-            unsigned int colonPos = name.find(':');
-            // 截取冒号前边的部分
-            name = name.substr(0, colonPos);
-        }
-        return name;
-    } else {
-        return getTopAppShell();
+        return checkSymbol(name);
     }
+    return getTopAppShell();
 }
+
 std::string getTopAppShell() {
     std::string name;
     const std::string str =
@@ -74,12 +69,15 @@ std::string getTopAppShell() {
     const auto last = name.find_last_not_of(" ");
     name = name.substr(first, last - first + 1);
 
+    return checkSymbol(name);
+}
+
+std::string checkSymbol(std::string &name) {
     if (name.find(":") != std::string::npos) {
         // 获取冒号的位置
         unsigned int colonPos = name.find(':');
         // 截取冒号前边的部分
         name = name.substr(0, colonPos);
     }
-
     return name;
 }
