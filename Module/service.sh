@@ -12,7 +12,6 @@ wait_until_login() {
         sleep 1
     done
 }
-
 wait_until_login
 
 chmod +x $MODDIR/FeasArgSet
