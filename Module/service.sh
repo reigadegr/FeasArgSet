@@ -16,6 +16,12 @@ wait_until_login() {
 wait_until_login
 
 chmod +x $MODDIR/FeasArgSet
-true > $MODDIR/FeasArgSet.log
+
+if [ -f $MODDIR/FeasArgSet.log ]; then
+    mv -f $MODDIR/FeasArgSet.log $MODDIR/FeasArgSet.log.bak
+else
+    touch  $MODDIR/FeasArgSet.log
+fi
+
 killall -15 FeasArgSet
 nohup $MODDIR/FeasArgSet $MODDIR/config/package.conf $MODDIR/config/path.conf >$MODDIR/FeasArgSet.log 2>&1 &

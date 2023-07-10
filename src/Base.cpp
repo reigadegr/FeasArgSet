@@ -41,11 +41,14 @@ bool matching_start(std::vector<listGame> gamesaver,
     }
 
     now_package = FgApp;
-
+    LOG("检测到APP切换");
+    LOG("时间: ", printCurrentTime());
     // 打印包名
     for (const auto &game : gamesaver) {
         if (FgApp.find(game.name) != std::string::npos) {
-            LOG("检测到列表应用  : ", game.name);
+            // 打印时间
+
+            LOG("检测到列表应用:   ", game.name, "\n");
             // 成功后把结构体内各个对象的值写入到指定路径
             //...
             Feas_on(game.fixed_target_fps, game.scaling_a, game.scaling_b,
@@ -58,7 +61,8 @@ bool matching_start(std::vector<listGame> gamesaver,
     }
 
     // LOG("失败匹配");
-    LOG("检测到非列表应用: ", FgApp);
+
+    LOG("检测到非列表应用: ", FgApp, "\n");
     Feas_off(feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a,
              feaspath.scaling_b);
     recover_freq();
