@@ -2,6 +2,7 @@
 #include "GameList.h"
 #include "Path.h"
 #include <list>
+
 // 记录时间
 std::string printCurrentTime();
 void set_middle_big_gov(std::string gov);
@@ -20,6 +21,7 @@ bool Get1To2(std::string input, std::string output);
 std::string execCmdSync(const std::string &command,
                         const std::vector<std::string> &args);
 std::string getTopApp();
+std::string getTopAppShell();
 
 // running
 bool matching_start(std::list<listGame> gamesaver,

@@ -32,20 +32,20 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
 bool matching_start(std::list<listGame> gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
-    std::string FgApp = getTopApp();
-    // LOG("前台包名: ",FgApp);
+    std::string TaApp = getTopApp();
+    // LOG("前台包名: ",TaApp);
 
     // 包名与上次相同则直接返回，降低开销
-    if (FgApp == now_package) {
+    if (TaApp == now_package) {
         return true;
     }
 
-    now_package = FgApp;
+    now_package = TaApp;
 
     LOG("时间: ", printCurrentTime());
     // 打印包名
     for (const auto &game : gamesaver) {
-        if (FgApp.find(game.name) != std::string::npos) {
+        if (TaApp.find(game.name) != std::string::npos) {
             // 打印时间
 
             LOG("检测到列表应用:   ", game.name, "\n");
@@ -62,7 +62,7 @@ bool matching_start(std::list<listGame> gamesaver,
 
     // LOG("失败匹配");
 
-    LOG("检测到非列表应用: ", FgApp, "\n");
+    LOG("检测到非列表应用: ", TaApp, "\n");
     Feas_off(feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a,
              feaspath.scaling_b);
     recover_freq();
