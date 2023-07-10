@@ -8,3 +8,5 @@ path.conf写你的设备的路径
 package.conf写需要开启feas的游戏包名
 以及目标帧率等参数
 修改后需要重新执行service.sh以应用新配置
+项目地址https://github.com/reigadegr/FeasArgSet
+欢迎各位大佬给出指导意见！

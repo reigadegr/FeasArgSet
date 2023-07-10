@@ -39,22 +39,21 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,
                 int scaling_a = tmpmsg.scaling_a = 0;
                 int scaling_b = tmpmsg.scaling_b = 0;
 
-                if (iss >> name >> fps >> scaling_a >> scaling_b) {
+                iss >> name >> fps >> scaling_a >> scaling_b;
+                // 错误值处理
+                if (scaling_a > 1000)
+                    scaling_a = 1000;
 
-                    if (scaling_a > 1000)
-                        scaling_a = 1000;
+                if (scaling_a < -1000)
+                    scaling_a = -1000;
 
-                    if (scaling_a < -1000)
-                        scaling_a = -1000;
+                if (scaling_b > 1000)
+                    scaling_b = 1000;
 
-                    if (scaling_b > 1000)
-                        scaling_b = 1000;
+                if (scaling_b < -1000)
+                    scaling_b = -1000;
 
-                    if (scaling_b < -1000)
-                        scaling_b = -1000;
-
-                    profit.push_back({name, fps, scaling_a, scaling_b});
-                }
+                profit.push_back({name, fps, scaling_a, scaling_b});
             }
         }
     }
