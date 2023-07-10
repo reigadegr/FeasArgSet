@@ -44,7 +44,6 @@ std::string getTopApp() {
         app.open("/proc/" + pid + "/cmdline");
 
         if (!app) {
-
             return getTopAppShell();
         }
 
