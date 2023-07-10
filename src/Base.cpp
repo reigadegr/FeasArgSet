@@ -29,7 +29,7 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
     // LOG(tmp," : ",secondArg);
 }
 
-bool matching_start(std::vector<listGame> gamesaver,
+bool matching_start(std::list<listGame> gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     std::string FgApp = getTopApp();
@@ -41,7 +41,7 @@ bool matching_start(std::vector<listGame> gamesaver,
     }
 
     now_package = FgApp;
-    // LOG("检测到前台APP");
+
     LOG("时间: ", printCurrentTime());
     // 打印包名
     for (const auto &game : gamesaver) {
@@ -71,7 +71,7 @@ bool matching_start(std::vector<listGame> gamesaver,
     return true;
 }
 
-void matchingThread(std::vector<listGame> gamesaver,
+void matchingThread(std::list<listGame> gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     while (true) {

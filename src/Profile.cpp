@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-bool readProfile(const char *profile, std::vector<listGame> &profit,
+bool readProfile(const char *profile, std::list<listGame> &profit,
                  std::string &middle_big_core_in_game,
                  std::string &global_gov) {
     std::ifstream file(profile);
@@ -45,8 +45,9 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,
                 scaling_a = std::clamp(scaling_a, -1000, 1000);
                 scaling_b = std::clamp(scaling_b, -1000, 1000);
 
-                profit.push_back({name, fps, scaling_a, scaling_b});
-                LOG("成功加载: ", name, "\n目标帧率: ", fps,
+                profit.push_front({name, fps, scaling_a, scaling_b});
+
+                LOG("成功添加: ", name, "\n目标帧率: ", fps,
                     "\nscaling_a: ", scaling_a, "\nscaling_b: ", scaling_b,
                     "\n");
             }
