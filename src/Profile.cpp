@@ -1,10 +1,10 @@
 #include "include/GameList.h"
 #include "include/function.h"
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <vector>
-
 bool readProfile(const char *profile, std::vector<listGame> &profit,
                  std::string &middle_big_core_in_game,
                  std::string &global_gov) {
@@ -41,19 +41,14 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,
 
                 iss >> name >> fps >> scaling_a >> scaling_b;
                 // 错误值处理
-                if (scaling_a > 1000)
-                    scaling_a = 1000;
 
-                if (scaling_a < -1000)
-                    scaling_a = -1000;
-
-                if (scaling_b > 1000)
-                    scaling_b = 1000;
-
-                if (scaling_b < -1000)
-                    scaling_b = -1000;
+                scaling_a = std::clamp(scaling_a, -1000, 1000);
+                scaling_b = std::clamp(scaling_b, -1000, 1000);
 
                 profit.push_back({name, fps, scaling_a, scaling_b});
+                LOG("成功加载: ", name, "\n目标帧率: ", fps,
+                    "\nscaling_a: ", scaling_a, "\nscaling_b: ", scaling_b,
+                    "\n");
             }
         }
     }
