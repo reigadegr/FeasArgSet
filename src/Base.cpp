@@ -41,7 +41,7 @@ bool matching_start(std::vector<listGame> gamesaver,
     }
 
     now_package = FgApp;
-    LOG("检测到APP切换");
+    // LOG("检测到前台APP");
     LOG("时间: ", printCurrentTime());
     // 打印包名
     for (const auto &game : gamesaver) {
