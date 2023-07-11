@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     // 设置非游戏全局调速器(默认值)
     std::string gov = "schedutil";
 
-    std::list<listGame> gamesaver;
+    std::vector<listGame> gamesaver;
 
     // 读取包名列表
     bool ReadProfile =

@@ -1,7 +1,6 @@
 #include "include/LockValue.h"
 #include "include/function.h"
 #include <fstream>
-#include <iostream>
 #include <sstream>
 #include <thread>
 
@@ -28,7 +27,7 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
     // LOG(tmp," : ",secondArg);
 }
 
-bool matching_start(std::list<listGame> gamesaver,
+bool matching_start(std::vector<listGame> gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     std::string TaApp = getTopApp();
@@ -68,7 +67,7 @@ bool matching_start(std::list<listGame> gamesaver,
     return true;
 }
 
-void matchingThread(std::list<listGame> gamesaver,
+void matchingThread(std::vector<listGame> gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     while (true) {

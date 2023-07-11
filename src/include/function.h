@@ -2,13 +2,13 @@
 #include "GameList.h"
 #include "Path.h"
 #include <list>
-
+#include <vector>
 // 记录时间
 std::string printCurrentTime();
 void set_middle_big_gov(std::string gov);
 
 // readFile
-bool readProfile(const char *profile, std::list<listGame> &profit,
+bool readProfile(const char *profile, std::vector<listGame> &profit,
                  std::string &middle_big_core_in_game,
                  std::string &little_core_gov);
 bool readPathProfile(const char *pathProfile, std::string &Feas_switch,
@@ -24,10 +24,10 @@ std::string getTopApp();
 std::string getTopAppShell();
 std::string checkSymbol(std::string &name);
 // running
-bool matching_start(std::list<listGame> gamesaver,
+bool matching_start(std::vector<listGame> gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package);
-void matchingThread(std::list<listGame> gamesaver,
+void matchingThread(std::vector<listGame> gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package);
 
