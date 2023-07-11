@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <vector>
+
 bool readProfile(const char *profile, std::list<listGame> &profit,
                  std::string &middle_big_core_in_game,
                  std::string &global_gov) {

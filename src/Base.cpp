@@ -4,7 +4,6 @@
 #include <iostream>
 #include <sstream>
 #include <thread>
-#include <vector>
 
 // 把第一个节点的值写到另一个节点
 bool Get1To2(std::string input, std::string output) {
@@ -46,8 +45,6 @@ bool matching_start(std::list<listGame> gamesaver,
     // 打印包名
     for (const auto &game : gamesaver) {
         if (TaApp.find(game.name) != std::string::npos) {
-            // 打印时间
-
             LOG("检测到列表应用:   ", game.name, "\n");
             // 成功后把结构体内各个对象的值写入到指定路径
             //...

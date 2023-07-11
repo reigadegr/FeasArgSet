@@ -3,10 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include <unistd.h>
-#include <vector>
 
 std::string execCmdSync(const std::string &command,
-                        const std::vector<std::string> &args) {
+                        const std::list<std::string> &args) {
     // 将命令和参数拼接为一个字符串
     std::string cmdStr = command;
     for (const auto &arg : args) {
@@ -27,11 +26,6 @@ std::string execCmdSync(const std::string &command,
 }
 auto Testfile(const char *location) { return access(location, F_OK) == 0; }
 std::string getTopApp() {
-    /*
-    auto Testfile = [](const char *location) {
-        return access(location, F_OK) == 0;
-    };
-    */
     if (Testfile("/sys/kernel/gbe/gbe2_fg_pid")) {
         std::string pid, name;
         std::ifstream f_pid, app;

@@ -1,9 +1,8 @@
-#include "include/LockValue.h"
 #include "include/function.h"
 #include <fstream>
 #include <iostream>
 #include <thread>
-#include <vector>
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
     const char *profile = argv[1];

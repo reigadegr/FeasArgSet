@@ -17,14 +17,14 @@ template <typename T> static void lock_val(T value, const std::string &path) {
 
     // check value
     std::ifstream test(path);
+    if (test.is_open()) {
+        T temp;
+        test >> temp;
+        test.close();
 
-    T temp;
-    test >> temp;
-    test.close();
-
-    if (temp == value) {
-        // LOG("值相同");
-        return;
+        if (temp == value) {
+            return;
+        }
     }
     // check done
 
