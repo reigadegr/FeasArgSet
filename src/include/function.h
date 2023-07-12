@@ -1,7 +1,6 @@
 #pragma once
 #include "GameList.h"
 #include "Path.h"
-#include <list>
 #include <vector>
 // 记录时间
 std::string printCurrentTime();

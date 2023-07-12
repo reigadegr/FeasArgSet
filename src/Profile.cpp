@@ -33,11 +33,11 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,
 
             if (buf[0] != '#' && buf[0] != '$' && buf[0] != '&') {
                 std::istringstream iss(buf);
-                listGame tmpmsg;
-                std::string name = tmpmsg.name;
-                unsigned int fps = tmpmsg.fixed_target_fps = 60;
-                int scaling_a = tmpmsg.scaling_a = 0;
-                int scaling_b = tmpmsg.scaling_b = 0;
+
+                std::string name;
+                unsigned int fps = 60;
+                int scaling_a = 0;
+                int scaling_b = 0;
 
                 iss >> name >> fps >> scaling_a >> scaling_b;
                 // 错误值处理
