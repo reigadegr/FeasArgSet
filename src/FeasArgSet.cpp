@@ -12,8 +12,7 @@ int main(int argc, char *argv[]) {
     // 获取feas节点
 
     // 实例化FeasPath的对象feaspath
-    readPathProfile(pathProfile, feaspath.Feas_switch, feaspath.Fps,
-                    feaspath.scaling_a, feaspath.scaling_b);
+    readPathProfile(pathProfile, feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b);
 
     if (access(feaspath.Feas_switch.c_str(), F_OK) == -1) {
         LOG("节点不存在。请检查设备是否支持Feas功能，节点是否设置正确");
@@ -30,8 +29,7 @@ int main(int argc, char *argv[]) {
     std::vector<listGame> gamesaver;
 
     // 读取包名列表
-    bool ReadProfile =
-        readProfile(profile, gamesaver, middle_big_core_in_game, gov);
+    bool ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov);
 
     if (!ReadProfile) {
         LOG("读取文件失败，进程结束");
@@ -45,8 +43,8 @@ int main(int argc, char *argv[]) {
     // 记录当前包名
     std::string now_package = "";
 
-    std::thread t(matchingThread, gamesaver, std::ref(middle_big_core_in_game),
-                  std::ref(feaspath), std::ref(gov), std::ref(now_package));
+    std::thread t(matchingThread, gamesaver, std::ref(middle_big_core_in_game), std::ref(feaspath), std::ref(gov),
+                  std::ref(now_package));
 
     t.join();
 }

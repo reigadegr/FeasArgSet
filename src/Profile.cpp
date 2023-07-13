@@ -5,8 +5,7 @@
 #include <iostream>
 #include <sstream>
 
-bool readProfile(const char *profile, std::vector<listGame> &profit,
-                 std::string &middle_big_core_in_game,
+bool readProfile(const char *profile, std::vector<listGame> &profit, std::string &middle_big_core_in_game,
                  std::string &global_gov) {
     std::ifstream file(profile);
 
@@ -47,11 +46,9 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,
 
                 // profit.push_back({name, fps, scaling_a, scaling_b});
 
-                profit.insert(profit.begin(),
-                              {name, fps, scaling_a, scaling_b});
+                profit.insert(profit.begin(), {name, fps, scaling_a, scaling_b});
 
-                LOG("成功添加: ", name, "\n目标帧率: ", fps,
-                    "\nscaling_a: ", scaling_a, "\nscaling_b: ", scaling_b,
+                LOG("成功添加: ", name, "\n目标帧率: ", fps, "\nscaling_a: ", scaling_a, "\nscaling_b: ", scaling_b,
                     "\n");
             }
         }
@@ -66,8 +63,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit,
     return true;
 }
 
-bool readPathProfile(const char *pathProfile, std::string &Feas_switch,
-                     std::string &Fps_path, std::string &scaling_a,
+bool readPathProfile(const char *pathProfile, std::string &Feas_switch, std::string &Fps_path, std::string &scaling_a,
                      std::string &scaling_b) {
     std::ifstream file(pathProfile);
 

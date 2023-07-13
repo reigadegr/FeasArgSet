@@ -7,8 +7,7 @@
 std::string getTopAppShell();
 std::string checkSymbol(std::string &name);
 auto Testfile(const char *location);
-std::string execCmdSync(const std::string &command,
-                        const std::vector<std::string> &args) {
+std::string execCmdSync(const std::string &command, const std::vector<std::string> &args) {
     // 将命令和参数拼接为一个字符串
     std::string cmdStr = command;
     for (const auto &arg : args) {
@@ -55,8 +54,7 @@ std::string getTopApp() {
 
 std::string getTopAppShell() {
     std::string name;
-    const std::string str =
-        execCmdSync("/system/bin/dumpsys", {"window", "visible-apps"});
+    const std::string str = execCmdSync("/system/bin/dumpsys", {"window", "visible-apps"});
 
     const auto pkgPos = str.find("package=") + 8;
 

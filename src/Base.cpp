@@ -27,8 +27,7 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
     // LOG(tmp," : ",secondArg);
 }
 
-bool matching_start(std::vector<listGame> gamesaver,
-                    std::string &middle_big_core_in_game, FeasPath &feaspath,
+bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     std::string TaApp = getTopApp();
     // LOG("前台包名: ",TaApp);
@@ -47,9 +46,8 @@ bool matching_start(std::vector<listGame> gamesaver,
             LOG("检测到列表应用:   ", game.name, "\n");
             // 成功后把结构体内各个对象的值写入到指定路径
             //...
-            Feas_on(game.fixed_target_fps, game.scaling_a, game.scaling_b,
-                    feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a,
-                    feaspath.scaling_b);
+            Feas_on(game.fixed_target_fps, game.scaling_a, game.scaling_b, feaspath.Feas_switch, feaspath.Fps,
+                    feaspath.scaling_a, feaspath.scaling_b);
 
             set_middle_big_gov(middle_big_core_in_game);
             return true;
@@ -59,20 +57,17 @@ bool matching_start(std::vector<listGame> gamesaver,
     // LOG("失败匹配");
 
     LOG("检测到非列表应用: ", TaApp, "\n");
-    Feas_off(feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a,
-             feaspath.scaling_b);
+    Feas_off(feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b);
     recover_freq();
     init_gov(gov);
 
     return true;
 }
 
-void matchingThread(std::vector<listGame> gamesaver,
-                    std::string &middle_big_core_in_game, FeasPath &feaspath,
+void matchingThread(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     while (true) {
-        matching_start(gamesaver, middle_big_core_in_game, feaspath, gov,
-                       now_package);
+        matching_start(gamesaver, middle_big_core_in_game, feaspath, gov, now_package);
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }

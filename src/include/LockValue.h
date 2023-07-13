@@ -8,7 +8,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-template <typename T> static void lock_val(T value, const std::string &path) {
+template <typename T>
+static void lock_val(T value, const std::string &path) {
 
     if (access(path.c_str(), F_OK) == -1)
         return;
