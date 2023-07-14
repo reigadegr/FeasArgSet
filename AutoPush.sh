@@ -7,4 +7,4 @@ rm -rf $(dirname "$0")/*.bak
 
 /data/data/com.termux/files/usr/bin/git commit -m "$1"
 
-/data/data/com.termux/files/usr/bin/git push origin main
+/data/data/com.termux/files/usr/bin/git push -f origin main
