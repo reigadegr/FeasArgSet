@@ -24,6 +24,6 @@ cd  $(dirname "$0")/../src
     
     remove_file 2>/dev/null
     cp -f $(dirname "$0")/FeasArgSet  ../Module/FeasArgSet
-    mv -f $(dirname "$0")/FeasArgSet  ../src/FeasArgSet
+    mv -f $(dirname "$0")/FeasArgSet  ../Test/FeasArgSet
     
     echo "当前时间：$(date +%Y) 年 $(date +%m) 月 $(date +%d) 日 $(date +%H) 时 $(date +%M) 分 $(date +%S) 秒"

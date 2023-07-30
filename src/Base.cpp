@@ -3,7 +3,6 @@
 #include <fstream>
 #include <sstream>
 #include <thread>
-
 // 把第一个节点的值写到另一个节点
 bool Get1To2(std::string input, std::string output) {
     std::ifstream input_path(input);
@@ -50,6 +49,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
                     feaspath.scaling_a, feaspath.scaling_b);
 
             set_middle_big_gov(middle_big_core_in_game);
+            Allow_system_operation();
             return true;
         }
     }

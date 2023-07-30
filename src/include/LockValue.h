@@ -14,7 +14,7 @@ static void lock_val(T value, const std::string &path) {
     if (access(path.c_str(), F_OK) == -1)
         return;
 
-    umount(path.c_str());
+    // umount(path.c_str());
 
     // check value
     std::ifstream test(path);
