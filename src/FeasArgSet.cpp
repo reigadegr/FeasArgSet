@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
         }
     }
     if (check) {
-        LOG("有不存在的节点，请检查设备是否支持Feas功能，节点是否设置正确");
+        LOG("设置了不存在的节点，请检查设备是否支持Feas功能，节点是否设置正确");
         LOG("进程已结束");
         return -1;
     }
