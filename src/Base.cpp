@@ -58,6 +58,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
 
     LOG("检测到非列表应用: ", TaApp, "\n");
     Feas_off(feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b);
+
     recover_freq();
     init_gov(gov);
 

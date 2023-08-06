@@ -14,6 +14,18 @@ void Feas_off(std::string Feas_switch, std::string fps_path, std::string scaling
     lock_val(0, fps_path);
     lock_val(0, scaling_a_path);
     lock_val(0, scaling_b_path);
+
+    // 退出游戏，解锁feas节点权限
+    Permission_unlock(Feas_switch);
+    Permission_unlock(fps_path);
+    Permission_unlock(scaling_a_path);
+    Permission_unlock(scaling_b_path);
+}
+void Allow_system_operation() {
+    // 进入游戏，解锁scaling_max_freq节点权限
+    for (int i = 0; i <= 7; i++) {
+        Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
+    }
 }
 
 void init_gov(std::string &gov) {
@@ -21,16 +33,13 @@ void init_gov(std::string &gov) {
         lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
     }
 }
+
 void set_middle_big_gov(std::string gov) {
     for (int i = 3; i <= 7; i++) {
         lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
     }
 }
-void Allow_system_operation() {
-    for (int i = 0; i <= 7; i++) {
-        Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
-    }
-}
+
 // Recover the scaling_max_freq and scaling_min_freq from cpu_info_max_freq and cpu_info_min_freq
 void recover_freq() {
     for (int i = 0; i <= 7; i++) {
