@@ -23,4 +23,8 @@ else
 fi
 
 killall -15 FeasArgSet
-nohup $MODDIR/FeasArgSet $MODDIR/config/package.conf $MODDIR/config/path.conf >$MODDIR/FeasArgSet.log 2>&1 &
+#ELF
+nohup $MODDIR/FeasArgSet \
+$MODDIR/config/package.conf \
+$MODDIR/config/path.conf \
+>$MODDIR/FeasArgSet.log 2>&1 &

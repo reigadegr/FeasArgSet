@@ -75,20 +75,24 @@ bool readPathProfile(const char *pathProfile, std::string &Feas_switch, std::str
         if (!buf.empty() && buf[0] != '#') {
             if (buf.find("Feas_switch_path") != std::string::npos) {
                 GetSecondArg(buf, Feas_switch);
+                LOG("Feas开关节点: ", Feas_switch, "\n");
                 continue;
             }
 
             if (buf.find("Fps_Path") != std::string::npos) {
                 GetSecondArg(buf, Fps_path);
+                LOG("目标fps节点: ", Fps_path, "\n");
                 continue;
             }
             if (buf.find("Scaling_a_path") != std::string::npos) {
                 GetSecondArg(buf, scaling_a);
+                LOG("scaling_a节点: ", scaling_a, "\n");
                 continue;
             }
 
             if (buf.find("Scaling_b_path") != std::string::npos) {
                 GetSecondArg(buf, scaling_b);
+                LOG("scaling_b节点: ", scaling_b, "\n");
                 continue;
             }
         }
