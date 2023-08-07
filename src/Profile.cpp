@@ -1,8 +1,7 @@
 #include "include/GameList.h"
 #include "include/function.h"
 #include <algorithm>
-#include <cmath>
-// #include <cstdlib>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -41,6 +40,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
 
                 iss >> name >> fps >> scaling_a >> scaling_b;
                 // 错误值处理
+                // fps
                 int fps_int = fps;
                 if (fps_int != 60 && fps_int != 90 && fps_int != 120) {
                     int closest = std::min({std::abs(fps_int - 60), std::abs(fps_int - 90), abs(fps_int - 120)});
@@ -58,8 +58,6 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
                 scaling_a = std::clamp(scaling_a, -1000, 1000);
                 scaling_b = std::clamp(scaling_b, -1000, 1000);
 
-                // profit.push_back({name, fps, scaling_a, scaling_b});
-
                 profit.insert(profit.begin(), {name, fps, scaling_a, scaling_b});
 
                 LOG("成功添加: ", name, "\n目标帧率: ", fps, "\nscaling_a: ", scaling_a, "\nscaling_b: ", scaling_b,
@@ -68,12 +66,6 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
         }
     }
     file.close();
-    /*
-    //debug
-    for (const auto &tmp : profit) {
-        LOG("开始遍历vector: ", tmp.name);
-    }
-    */
     return true;
 }
 
