@@ -1,6 +1,5 @@
 #include "include/LockValue.h"
 #include "include/NodePermission.h"
-#include "include/Path.h"
 #include "include/function.h"
 void Feas_on(const struct listGame *o, struct FeasPath *p) {
     lock_val(1, p->Feas_switch);
@@ -10,6 +9,7 @@ void Feas_on(const struct listGame *o, struct FeasPath *p) {
 }
 
 void Feas_off(struct FeasPath *p) {
+    // 退出游戏，恢复节点值
     lock_val(0, p->Feas_switch);
     lock_val(0, p->Fps);
     lock_val(0, p->scaling_a);

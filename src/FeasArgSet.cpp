@@ -10,7 +10,6 @@ int main(int argc, char *argv[]) {
     // 创建FeasPath的对象feaspath
     FeasPath feaspath;
     // 获取feas节点
-
     // 实例化FeasPath的对象feaspath
     readPathProfile(pathProfile, &feaspath);
     // 检查节点是不是都存在
@@ -21,7 +20,7 @@ int main(int argc, char *argv[]) {
 
     // 设置非游戏全局调速器(默认值)
     std::string gov = "schedutil";
-
+    // 创建结构体动态数组
     std::vector<listGame> gamesaver;
 
     // 读取包名列表
@@ -44,5 +43,6 @@ int main(int argc, char *argv[]) {
 
         t.join();
         */
+    // 开始运行
     matchingThread(gamesaver, middle_big_core_in_game, feaspath, gov, now_package);
 }
