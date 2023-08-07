@@ -1,10 +1,11 @@
 #include "include/GameList.h"
 #include "include/function.h"
 #include <algorithm>
+#include <cmath>
+// #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
 bool readProfile(const char *profile, std::vector<listGame> &profit, std::string &middle_big_core_in_game,
                  std::string &global_gov) {
     std::ifstream file(profile);
@@ -40,6 +41,19 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
 
                 iss >> name >> fps >> scaling_a >> scaling_b;
                 // 错误值处理
+                int fps_int = fps;
+                if (fps_int != 60 && fps_int != 90 && fps_int != 120) {
+                    int closest = std::min({std::abs(fps_int - 60), std::abs(fps_int - 90), abs(fps_int - 120)});
+                    if (closest == std::abs(fps_int - 60)) {
+                        closest = 60;
+                    } else if (closest == std::abs(fps_int - 90)) {
+                        closest = 90;
+                    } else if (closest == std::abs(fps_int - 120)) {
+                        closest = 120;
+                    }
+
+                    fps = closest;
+                }
 
                 scaling_a = std::clamp(scaling_a, -1000, 1000);
                 scaling_b = std::clamp(scaling_b, -1000, 1000);
