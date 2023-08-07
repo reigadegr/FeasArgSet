@@ -1,25 +1,25 @@
 #include "include/LockValue.h"
 #include "include/NodePermission.h"
+#include "include/Path.h"
 #include "include/function.h"
-void Feas_on(unsigned int fps, int scaling_a, int scaling_b, std::string Feas_switch, std::string fps_path,
-             std::string scaling_a_path, std::string scaling_b_path) {
-    lock_val(1, Feas_switch);
-    lock_val(fps, fps_path);
-    lock_val(scaling_a, scaling_a_path);
-    lock_val(scaling_b, scaling_b_path);
+void Feas_on(const struct listGame *o, struct FeasPath *p) {
+    lock_val(1, p->Feas_switch);
+    lock_val(o->fixed_target_fps, p->Fps);
+    lock_val(o->scaling_a, p->scaling_a);
+    lock_val(o->scaling_b, p->scaling_b);
 }
 
-void Feas_off(std::string Feas_switch, std::string fps_path, std::string scaling_a_path, std::string scaling_b_path) {
-    lock_val(0, Feas_switch);
-    lock_val(0, fps_path);
-    lock_val(0, scaling_a_path);
-    lock_val(0, scaling_b_path);
+void Feas_off(struct FeasPath *p) {
+    lock_val(0, p->Feas_switch);
+    lock_val(0, p->Fps);
+    lock_val(0, p->scaling_a);
+    lock_val(0, p->scaling_b);
 
     // 退出游戏，解锁feas节点权限
-    Permission_unlock(Feas_switch);
-    Permission_unlock(fps_path);
-    Permission_unlock(scaling_a_path);
-    Permission_unlock(scaling_b_path);
+    Permission_unlock(p->Feas_switch);
+    Permission_unlock(p->Fps);
+    Permission_unlock(p->scaling_a);
+    Permission_unlock(p->scaling_b);
 }
 void Allow_system_operation() {
     // 进入游戏，解锁scaling_max_freq节点权限

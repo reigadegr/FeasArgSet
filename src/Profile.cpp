@@ -69,8 +69,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
     return true;
 }
 
-bool readPathProfile(const char *pathProfile, std::string &Feas_switch, std::string &Fps_path, std::string &scaling_a,
-                     std::string &scaling_b) {
+bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
     std::ifstream file(pathProfile);
 
     if (!file.is_open())
@@ -80,25 +79,25 @@ bool readPathProfile(const char *pathProfile, std::string &Feas_switch, std::str
     while (std::getline(file, buf)) {
         if (!buf.empty() && buf[0] != '#') {
             if (buf.find("Feas_switch_path") != std::string::npos) {
-                GetSecondArg(buf, Feas_switch);
-                LOG("Feas开关节点: ", Feas_switch, "\n");
+                GetSecondArg(buf, p->Feas_switch);
+                LOG("Feas开关节点: ", p->Feas_switch, "\n");
                 continue;
             }
 
             if (buf.find("Fps_Path") != std::string::npos) {
-                GetSecondArg(buf, Fps_path);
-                LOG("目标fps节点: ", Fps_path, "\n");
+                GetSecondArg(buf, p->Fps);
+                LOG("目标fps节点: ", p->Fps, "\n");
                 continue;
             }
             if (buf.find("Scaling_a_path") != std::string::npos) {
-                GetSecondArg(buf, scaling_a);
-                LOG("scaling_a节点: ", scaling_a, "\n");
+                GetSecondArg(buf, p->scaling_a);
+                LOG("scaling_a节点: ", p->scaling_a, "\n");
                 continue;
             }
 
             if (buf.find("Scaling_b_path") != std::string::npos) {
-                GetSecondArg(buf, scaling_b);
-                LOG("scaling_b节点: ", scaling_b, "\n");
+                GetSecondArg(buf, p->scaling_b);
+                LOG("scaling_b节点: ", p->scaling_b, "\n");
                 continue;
             }
         }

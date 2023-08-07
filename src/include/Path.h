@@ -1,9 +1,8 @@
 #pragma once
 #include <iostream>
-typedef struct {
+struct FeasPath {
     std::string Feas_switch;
     std::string Fps;
     std::string scaling_a;
     std::string scaling_b;
-
-} FeasPath;
+};

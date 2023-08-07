@@ -45,9 +45,13 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
             LOG("检测到列表应用:   ", game.name, "\n");
             // 成功后把结构体内各个对象的值写入到指定路径
             //...
-            Feas_on(game.fixed_target_fps, game.scaling_a, game.scaling_b, feaspath.Feas_switch, feaspath.Fps,
-                    feaspath.scaling_a, feaspath.scaling_b);
-
+            Feas_on(&game, &feaspath);
+            /*
+            system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
+            system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
+            system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
+            system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
+            */
             set_middle_big_gov(middle_big_core_in_game);
             Allow_system_operation();
             return true;
@@ -57,8 +61,13 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
     // LOG("失败匹配");
 
     LOG("检测到非列表应用: ", TaApp, "\n");
-    Feas_off(feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b);
-
+    Feas_off(&feaspath);
+    /*
+    system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
+    system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
+    system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
+    system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
+    */
     recover_freq();
     set_gov(gov);
 
@@ -71,4 +80,22 @@ void matchingThread(std::vector<listGame> gamesaver, std::string &middle_big_cor
         matching_start(gamesaver, middle_big_core_in_game, feaspath, gov, now_package);
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
+}
+void check_path(struct FeasPath *p) {
+    // check path
+    std::vector<std::string> nodes = {p->Feas_switch, p->Fps, p->scaling_a, p->scaling_b};
+    bool check = false;
+    for (const auto &tmp : nodes) {
+        if (access(tmp.c_str(), F_OK) == -1) {
+            check = true;
+            LOG("节点: ", tmp, "不存在");
+            // return -1;
+        }
+    }
+    if (check) {
+        LOG("设置了不存在的节点，请检查设备是否支持Feas功能，节点是否设置正确");
+        LOG("进程已结束");
+        exit(1);
+    }
+    // check down
 }

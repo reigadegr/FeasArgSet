@@ -12,24 +12,10 @@ int main(int argc, char *argv[]) {
     // 获取feas节点
 
     // 实例化FeasPath的对象feaspath
-    readPathProfile(pathProfile, feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b);
+    readPathProfile(pathProfile, &feaspath);
+    // 检查节点是不是都存在
+    check_path(&feaspath);
 
-    // check path
-    std::vector<std::string> nodes = {feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b};
-    bool check = false;
-    for (const auto &tmp : nodes) {
-        if (access(tmp.c_str(), F_OK) == -1) {
-            check = true;
-            LOG("节点: ", tmp, "不存在");
-            // return -1;
-        }
-    }
-    if (check) {
-        LOG("设置了不存在的节点，请检查设备是否支持Feas功能，节点是否设置正确");
-        LOG("进程已结束");
-        return -1;
-    }
-    // check down
     //  设置游戏默认中大核调速器(默认值)
     std::string middle_big_core_in_game = "performance";
 
