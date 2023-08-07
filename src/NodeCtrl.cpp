@@ -28,7 +28,7 @@ void Allow_system_operation() {
     }
 }
 
-void init_gov(std::string &gov) {
+void set_gov(std::string &gov) {
     for (int i = 0; i <= 7; i++) {
         lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
     }

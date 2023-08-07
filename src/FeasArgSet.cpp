@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
     }
 
     // 初始化governor和scaling_max freq
-    init_gov(gov);
+    set_gov(gov);
     recover_freq();
     LOG("运行中...");
     // 记录当前包名

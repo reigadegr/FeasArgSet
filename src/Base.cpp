@@ -60,7 +60,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
     Feas_off(feaspath.Feas_switch, feaspath.Fps, feaspath.scaling_a, feaspath.scaling_b);
 
     recover_freq();
-    init_gov(gov);
+    set_gov(gov);
 
     return true;
 }

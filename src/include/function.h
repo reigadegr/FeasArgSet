@@ -25,7 +25,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
 void matchingThread(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package);
 
-void init_gov(std::string &gov);
+void set_gov(std::string &gov);
 void recover_freq();
 
 void GetSecondArg(std::string &buf, std::string &secondArg);
