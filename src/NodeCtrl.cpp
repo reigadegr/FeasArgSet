@@ -1,14 +1,14 @@
 #include "include/LockValue.h"
 #include "include/NodePermission.h"
 #include "include/function.h"
-void Feas_on(const struct listGame *o, struct FeasPath *p) {
+void Feas_on(const struct listGame *o, const struct FeasPath *p) {
     lock_val(1, p->Feas_switch);
     lock_val(o->fixed_target_fps, p->Fps);
     lock_val(o->scaling_a, p->scaling_a);
     lock_val(o->scaling_b, p->scaling_b);
 }
 
-void Feas_off(struct FeasPath *p) {
+void Feas_off(const struct FeasPath *p) {
     // 退出游戏，恢复节点值
     lock_val(0, p->Feas_switch);
     lock_val(0, p->Fps);

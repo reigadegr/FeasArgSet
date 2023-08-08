@@ -81,7 +81,7 @@ void matchingThread(std::vector<listGame> gamesaver, std::string &middle_big_cor
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
-void check_path(struct FeasPath *p) {
+void check_path(const struct FeasPath *p) {
     // check path
     std::vector<std::string> nodes = {p->Feas_switch, p->Fps, p->scaling_a, p->scaling_b};
     bool check = false;
