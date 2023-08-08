@@ -28,20 +28,20 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
 
 bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
-    std::string TaApp = getTopApp();
-    // LOG("前台包名: ",TaApp);
+    std::string TopApp = getTopApp();
+    // LOG("前台包名: ",TopApp);
 
     // 包名与上次相同则直接返回，降低开销
-    if (TaApp == now_package) {
+    if (TopApp == now_package) {
         return true;
     }
 
-    now_package = TaApp;
+    now_package = TopApp;
 
     LOG("时间: ", printCurrentTime());
     // 打印包名
     for (const auto &game : gamesaver) {
-        if (TaApp.find(game.name) != std::string::npos) {
+        if (TopApp.find(game.name) != std::string::npos) {
             LOG("检测到列表应用:   ", game.name, "\n");
             // 成功后把结构体内各个对象的值写入到指定路径
             //...
@@ -60,7 +60,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
 
     // LOG("失败匹配");
 
-    LOG("检测到非列表应用: ", TaApp, "\n");
+    LOG("检测到非列表应用: ", TopApp, "\n");
     Feas_off(&feaspath);
     /*
     system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");

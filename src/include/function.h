@@ -14,7 +14,7 @@ auto Testfile(const char *location);
 bool Get1To2(std::string input, std::string output);
 // 检查
 void check_path(struct FeasPath *p);
-// get fg APP name
+// get TaAPP name
 std::string execCmdSync(const std::string &command, const std::vector<std::string> &args);
 std::string getTopApp();
 std::string getTopAppShell();
