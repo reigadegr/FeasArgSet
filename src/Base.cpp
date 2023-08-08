@@ -85,10 +85,10 @@ void check_path(struct FeasPath *p) {
     // check path
     std::vector<std::string> nodes = {p->Feas_switch, p->Fps, p->scaling_a, p->scaling_b};
     bool check = false;
-    for (const auto &tmp : nodes) {
-        if (access(tmp.c_str(), F_OK) == -1) {
+    for (const auto &node : nodes) {
+        if (access(node.c_str(), F_OK) == -1) {
             check = true;
-            LOG("节点: ", tmp, "不存在");
+            LOG("节点: ", node, "不存在");
             // return -1;
         }
     }
