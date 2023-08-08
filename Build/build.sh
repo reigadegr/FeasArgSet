@@ -4,7 +4,6 @@ remove_file(){
 }
 
 format_code(){
-    cd /data/data/com.termux/files/usr/bin
     code_file="
         $(dirname "$0")/../src/*.cpp
         $(dirname "$0")/../src/include/*.h
@@ -12,7 +11,7 @@ format_code(){
 
     for i in $code_file; do
         echo "开始格式化$(basename $i)"
-        $(pwd)/clang-format -i $i
+        /data/data/com.termux/files/usr/bin/clang-format -i $i
     done
 }
 
