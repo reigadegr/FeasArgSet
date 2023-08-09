@@ -68,33 +68,6 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
     file.close();
     return true;
 }
-/*
-bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
-    std::ifstream file(pathProfile);
-
-    if (!file.is_open())
-        return false;
-
-    std::string buf;
-    std::string keys[] = {"Feas_switch_path", "Fps_Path", "Scaling_a_path", "Scaling_b_path"};
-    std::string *values[] = {&p->Feas_switch, &p->Fps, &p->scaling_a, &p->scaling_b};
-    std::string Description[] = {"Feas开关节点", "目标fps节点", "scaling_a节点", "scaling_b节点"};
-    for (int i = 0; i < 4; i++) {
-        while (std::getline(file, buf)) {
-            if (!buf.empty() && buf[0] != '#') {
-                if (buf.find(keys[i]) != std::string::npos) {
-                    GetSecondArg(buf, *values[i]);
-                    LOG(Description[i], ": ", *values[i], "\n");
-                    break;
-                }
-            }
-        }
-    }
-
-    file.close();
-    return true;
-}
-*/
 
 bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
     std::ifstream file(pathProfile);
