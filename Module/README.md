@@ -1,5 +1,6 @@
 # FeasArgSet
 一个可以自定义小米Feas配置的功能
+注意，本模块不是强开feas节点
 需要设备本身支持小米feas功能
 自己写自己设备的feas路径
 (开关，fps，scaling a b 的节点)

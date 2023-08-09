@@ -3,17 +3,23 @@
 #include <iostream>
 #include <thread>
 #include <unistd.h>
-
+bool write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathProfile);
+std::string auto_define();
 int main(int argc, char *argv[]) {
     const char *profile = argv[1];
     const char *pathProfile = argv[2];
+
     // 创建FeasPath的对象feaspath
     FeasPath feaspath;
+    /*
     // 获取feas节点
     // 实例化FeasPath的对象feaspath
     readPathProfile(pathProfile, &feaspath);
     // 检查节点是不是都存在
     check_path(&feaspath);
+    */
+    // 新方式，内置节点，没有的话则再去解析文件
+    write_struct(auto_define(), &feaspath, pathProfile);
 
     //  设置游戏默认中大核调速器(默认值)
     std::string middle_big_core_in_game = "performance";

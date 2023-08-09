@@ -27,9 +27,19 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
 }
 void debugnode() {
     system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
-    system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
+    system("echo -n \"pandora_fps: \" && cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
+
     system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
     system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
+
+    system("echo \"---------------------------------\"");
+
+    system("cat /sys/module/mtk_fpsgo/parameters/perfmgr_enable");
+    system("echo -n \"xiaomiFeas_fps: \" && cat /sys/module/mtk_fpsgo/parameters/fixed_target_fps");
+
+    system("cat /sys/module/mtk_fpsgo/parameters/scaling_a");
+    system("cat /sys/module/mtk_fpsgo/parameters/scaling_b");
+
     system("cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor");
     system("cat /sys/devices/system/cpu/cpufreq/policy4/scaling_governor");
     system("cat /sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
@@ -58,7 +68,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
             set_middle_big_gov(middle_big_core_in_game);
             Allow_system_operation();
             // 调试debug
-            //   debugnode();
+            // debugnode();
             return true;
         }
     }
@@ -71,7 +81,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
     recover_freq();
     set_gov(gov);
     // 调试debug
-    //   debugnode();
+    // debugnode();
     return true;
 }
 
@@ -102,4 +112,47 @@ void check_path(const struct FeasPath *p) {
         exit(1);
     }
     // check down
+}
+
+std::string auto_define() {
+    std::vector<std::string> nodes = {"/sys/module/perfmgr_mtk/parameters/perfmgr_enable",
+                                      "/sys/module/mtk_fpsgo/parameters/perfmgr_enable"};
+
+    for (const auto &node : nodes) {
+        if (access(node.c_str(), F_OK) == 0) {
+            LOG("内置节点: ", node, " 存在\n");
+            return node;
+        }
+    }
+    return "ReadFile";
+}
+
+bool write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathProfile) {
+
+    if (switch_ctrl == "/sys/module/mtk_fpsgo/parameters/perfmgr_enable") {
+        p->Feas_switch = "/sys/module/mtk_fpsgo/parameters/perfmgr_enable";
+        p->Fps = "/sys/module/mtk_fpsgo/parameters/fixed_target_fps";
+        p->scaling_a = "/sys/module/mtk_fpsgo/parameters/scaling_a";
+        p->scaling_b = "/sys/module/mtk_fpsgo/parameters/scaling_b";
+        return true;
+    }
+
+    if (switch_ctrl == "/sys/module/perfmgr_mtk/parameters/perfmgr_enable") {
+        p->Feas_switch = "/sys/module/perfmgr_mtk/parameters/perfmgr_enable";
+        p->Fps = "/sys/module/perfmgr_mtk/parameters/fixed_target_fps";
+        p->scaling_a = "/sys/module/perfmgr_mtk/parameters/scaling_a";
+        p->scaling_b = "/sys/module/perfmgr_mtk/parameters/scaling_b";
+        return true;
+    }
+
+    if (switch_ctrl == "ReadFile") {
+        LOG("内置节点不存在，读取文件\n");
+        // 实例化FeasPath的对象feaspath
+        FeasPath feaspath;
+        readPathProfile(pathProfile, &feaspath);
+        check_path(&feaspath);
+        return true;
+    }
+
+    return false;
 }
