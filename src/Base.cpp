@@ -54,11 +54,11 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
             // 成功后把结构体内各个对象的值写入到指定路径
             //...
             Feas_on(&game, &feaspath);
-            // 调试debug
-            // debugnode();
 
             set_middle_big_gov(middle_big_core_in_game);
             Allow_system_operation();
+            // 调试debug
+            //   debugnode();
             return true;
         }
     }
@@ -67,11 +67,11 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
 
     LOG("检测到非列表应用: ", TopApp, "\n");
     Feas_off(&feaspath);
-    // 调试debug
-    // debugnode();
+
     recover_freq();
     set_gov(gov);
-
+    // 调试debug
+    //   debugnode();
     return true;
 }
 

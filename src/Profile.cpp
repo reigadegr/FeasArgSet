@@ -87,10 +87,23 @@ bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
                         {"Fps_Path", &p->Fps, "目标fps节点"},
                         {"Scaling_a_path", &p->scaling_a, "scaling_a节点"},
                         {"Scaling_b_path", &p->scaling_b, "scaling_b节点"}};
+    /*
+        for (const auto &config : configs) {
+            while (std::getline(file, buf)) {
+                if (!buf.empty() && buf[0] != '#') {
+                    if (buf.find(config.key) != std::string::npos) {
+                        GetSecondArg(buf, *config.value);
+                        LOG(config.description, ": ", *config.value, "\n");
+                        break;
+                    }
+                }
+            }
+        }
+        */
 
-    for (const auto &config : configs) {
-        while (std::getline(file, buf)) {
-            if (!buf.empty() && buf[0] != '#') {
+    while (std::getline(file, buf)) {
+        if (!buf.empty() && buf[0] != '#') {
+            for (const auto &config : configs) {
                 if (buf.find(config.key) != std::string::npos) {
                     GetSecondArg(buf, *config.value);
                     LOG(config.description, ": ", *config.value, "\n");
