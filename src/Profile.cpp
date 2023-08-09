@@ -68,7 +68,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
     file.close();
     return true;
 }
-
+/*
 bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
     std::ifstream file(pathProfile);
 
@@ -85,6 +85,42 @@ bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
                 if (buf.find(keys[i]) != std::string::npos) {
                     GetSecondArg(buf, *values[i]);
                     LOG(Description[i], ": ", *values[i], "\n");
+                    break;
+                }
+            }
+        }
+    }
+
+    file.close();
+    return true;
+}
+*/
+
+bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
+    std::ifstream file(pathProfile);
+
+    if (!file.is_open())
+        return false;
+
+    std::string buf;
+    // 定义结构体
+    struct Config {
+        std::string key;
+        std::string *value;
+        std::string description;
+    };
+
+    Config configs[] = {{"Feas_switch_path", &p->Feas_switch, "Feas开关节点"},
+                        {"Fps_Path", &p->Fps, "目标fps节点"},
+                        {"Scaling_a_path", &p->scaling_a, "scaling_a节点"},
+                        {"Scaling_b_path", &p->scaling_b, "scaling_b节点"}};
+
+    for (const auto &config : configs) {
+        while (std::getline(file, buf)) {
+            if (!buf.empty() && buf[0] != '#') {
+                if (buf.find(config.key) != std::string::npos) {
+                    GetSecondArg(buf, *config.value);
+                    LOG(config.description, ": ", *config.value, "\n");
                     break;
                 }
             }
