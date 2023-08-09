@@ -94,7 +94,10 @@ void check_path(const struct FeasPath *p) {
         }
     }
     if (check) {
-        LOG("设置了不存在的节点，请检查设备是否支持Feas功能，节点是否设置正确");
+        LOG("设置了不存在的节点");
+        LOG("请检查: ");
+        LOG("1,设备是否支持Feas功能");
+        LOG("2,节点是否设置正确");
         LOG("进程已结束");
         exit(1);
     }
