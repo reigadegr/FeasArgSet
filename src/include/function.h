@@ -5,6 +5,9 @@
 // 记录时间
 std::string printCurrentTime();
 void set_middle_big_gov(std::string &gov);
+// 内置节点
+bool write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathProfile);
+std::string auto_define();
 
 // readFile
 bool readProfile(const char *profile, std::vector<listGame> &profit, std::string &middle_big_core_in_game,

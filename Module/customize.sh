@@ -25,3 +25,4 @@ if [ ! -d /data/adb/modules/FeasArgSetHelper ]; then
         done
 fi
 
+rm $MODPATH/Update.md

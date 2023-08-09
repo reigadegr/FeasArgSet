@@ -3,8 +3,7 @@
 #include <iostream>
 #include <thread>
 #include <unistd.h>
-bool write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathProfile);
-std::string auto_define();
+
 int main(int argc, char *argv[]) {
     const char *profile = argv[1];
     const char *pathProfile = argv[2];
