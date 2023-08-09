@@ -4,9 +4,6 @@
 #include <iostream>
 #include <unistd.h>
 #include <vector>
-std::string getTopAppShell();
-std::string checkSymbol(std::string &name);
-auto Testfile(const char *location);
 std::string execCmdSync(const std::string &command, const std::vector<std::string> &args) {
     // 将命令和参数拼接为一个字符串
     std::string cmdStr = command;

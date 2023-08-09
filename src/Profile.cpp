@@ -76,32 +76,21 @@ bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
         return false;
 
     std::string buf;
-    while (std::getline(file, buf)) {
-        if (!buf.empty() && buf[0] != '#') {
-            if (buf.find("Feas_switch_path") != std::string::npos) {
-                GetSecondArg(buf, p->Feas_switch);
-                LOG("Feas开关节点: ", p->Feas_switch, "\n");
-                continue;
-            }
-
-            if (buf.find("Fps_Path") != std::string::npos) {
-                GetSecondArg(buf, p->Fps);
-                LOG("目标fps节点: ", p->Fps, "\n");
-                continue;
-            }
-            if (buf.find("Scaling_a_path") != std::string::npos) {
-                GetSecondArg(buf, p->scaling_a);
-                LOG("scaling_a节点: ", p->scaling_a, "\n");
-                continue;
-            }
-
-            if (buf.find("Scaling_b_path") != std::string::npos) {
-                GetSecondArg(buf, p->scaling_b);
-                LOG("scaling_b节点: ", p->scaling_b, "\n");
-                continue;
+    std::string keys[] = {"Feas_switch_path", "Fps_Path", "Scaling_a_path", "Scaling_b_path"};
+    std::string *values[] = {&p->Feas_switch, &p->Fps, &p->scaling_a, &p->scaling_b};
+    std::string Description[] = {"Feas开关节点", "目标fps节点", "scaling_a节点", "scaling_b节点"};
+    for (int i = 0; i < 4; i++) {
+        while (std::getline(file, buf)) {
+            if (!buf.empty() && buf[0] != '#') {
+                if (buf.find(keys[i]) != std::string::npos) {
+                    GetSecondArg(buf, *values[i]);
+                    LOG(Description[i], ": ", *values[i], "\n");
+                    break;
+                }
             }
         }
     }
+
     file.close();
     return true;
 }

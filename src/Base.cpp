@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <thread>
-// 把第一个节点的值写到另一个节点
+// 把第一个节点的值写到另一个节点(lock_val方法)
 bool Get1To2(std::string input, std::string output) {
     std::ifstream input_path(input);
 
@@ -51,7 +51,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
             system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
             system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
             system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
-            */
+*/
             set_middle_big_gov(middle_big_core_in_game);
             Allow_system_operation();
             return true;
@@ -63,10 +63,10 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
     LOG("检测到非列表应用: ", TopApp, "\n");
     Feas_off(&feaspath);
     /*
-    system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
-    system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
-    system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
-    system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
+        system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
+        system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
+        system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
+        system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
     */
     recover_freq();
     set_gov(gov);
