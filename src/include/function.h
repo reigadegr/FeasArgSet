@@ -4,7 +4,7 @@
 #include <vector>
 // 记录时间
 std::string printCurrentTime();
-void set_middle_big_gov(std::string gov);
+void set_middle_big_gov(std::string &gov);
 
 // readFile
 bool readProfile(const char *profile, std::vector<listGame> &profit, std::string &middle_big_core_in_game,

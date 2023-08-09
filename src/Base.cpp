@@ -25,7 +25,15 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
     iss >> tmp >> secondArg;
     // LOG(tmp," : ",secondArg);
 }
-
+void debugnode() {
+    system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
+    system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
+    system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
+    system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
+    system("cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor");
+    system("cat /sys/devices/system/cpu/cpufreq/policy4/scaling_governor");
+    system("cat /sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
+}
 bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     std::string TopApp = getTopApp();
@@ -46,12 +54,9 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
             // 成功后把结构体内各个对象的值写入到指定路径
             //...
             Feas_on(&game, &feaspath);
-            /*
-            system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
-            system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
-            system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
-            system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
-*/
+            // 调试debug
+            // debugnode();
+
             set_middle_big_gov(middle_big_core_in_game);
             Allow_system_operation();
             return true;
@@ -62,12 +67,8 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
 
     LOG("检测到非列表应用: ", TopApp, "\n");
     Feas_off(&feaspath);
-    /*
-        system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
-        system("cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
-        system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
-        system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
-    */
+    // 调试debug
+    // debugnode();
     recover_freq();
     set_gov(gov);
 

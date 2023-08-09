@@ -34,8 +34,8 @@ void set_gov(std::string &gov) {
     }
 }
 
-void set_middle_big_gov(std::string gov) {
-    for (int i = 3; i <= 7; i++) {
+void set_middle_big_gov(std::string &gov) {
+    for (int i = 1; i <= 7; i++) {
         lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
     }
 }
