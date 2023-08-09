@@ -8,10 +8,7 @@ if [ -d /data/adb/modules/FeasArgSetHelper ]; then
             echo "$row"
             sleep 0.1
         done
-        
-fi
-
-if [ ! -d /data/adb/modules/FeasArgSetHelper ]; then
+else
     cat $MODPATH/README.md |
         while read row; do
             echo "$row"
