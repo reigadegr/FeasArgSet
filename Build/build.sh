@@ -14,17 +14,17 @@ format_code(){
         /data/data/com.termux/files/usr/bin/clang-format -i $i
     done
 }
-
 compile_start(){
     echo "当前时间：$(date +%Y) 年 $(date +%m) 月 $(date +%d) 日 $(date +%H) 时 $(date +%M) 分 $(date +%S) 秒"
     echo "开始编译，大概10秒完成"
     cd  $(dirname "$0")/../src
     #this common from user : shadow3aaa
     /data/data/com.termux/files/usr/bin/aarch64-linux-android-clang++ \
-    -Wall -fomit-frame-pointer -std=c++20 -stdlib=libc++ -Os -flto \
+    -Wall -fomit-frame-pointer -std=c++2b -stdlib=libc++ -Os -flto \
     -fno-rtti -fvisibility=hidden -static-libgcc -static-libstdc++ \
     -fshort-enums -fmerge-all-constants -fno-exceptions \
     -fuse-ld=lld -mtune=native -march=native -flto -pthread \
+    -lc++ -fPIC -llog \
     -Wl,-O3,--lto-O3,--gc-sections,--as-needed,--icf=all,-z,norelro,--pack-dyn-relocs=android+relr,-x,-s \
     $(pwd)/*.cpp -o $(dirname "$0")/FeasArgSet && echo "*编译完成*" || exit 1
     /data/data/com.termux/files/usr/bin/aarch64-linux-android-strip $(dirname "$0")/FeasArgSet

@@ -49,3 +49,19 @@ void recover_freq() {
                 "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_min_freq");
     }
 }
+
+void init_FeasNode() {
+    FeasPath Pandora_mtk;
+    Pandora_mtk.Feas_switch = "/sys/module/mtk_fpsgo/parameters/perfmgr_enable";
+    Pandora_mtk.Fps = "/sys/module/mtk_fpsgo/parameters/fixed_target_fps";
+    Pandora_mtk.scaling_a = "/sys/module/mtk_fpsgo/parameters/scaling_a";
+    Pandora_mtk.scaling_b = "/sys/module/mtk_fpsgo/parameters/scaling_b";
+    Feas_off(&Pandora_mtk);
+
+    FeasPath Mi_Mtk_FEAS;
+    Mi_Mtk_FEAS.Feas_switch = "/sys/module/perfmgr_mtk/parameters/perfmgr_enable";
+    Mi_Mtk_FEAS.Fps = "/sys/module/perfmgr_mtk/parameters/fixed_target_fps";
+    Mi_Mtk_FEAS.scaling_a = "/sys/module/perfmgr_mtk/parameters/scaling_a";
+    Mi_Mtk_FEAS.scaling_b = "/sys/module/perfmgr_mtk/parameters/scaling_b";
+    Feas_off(&Mi_Mtk_FEAS);
+}

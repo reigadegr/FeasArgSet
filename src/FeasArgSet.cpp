@@ -20,6 +20,8 @@ int main(int argc, char *argv[]) {
     // 新方式，内置节点，没有的话则再去解析文件
     write_struct(auto_define(), &feaspath, pathProfile);
 
+    init_FeasNode();
+
     //  设置游戏默认中大核调速器(默认值)
     std::string middle_big_core_in_game = "performance";
 

@@ -2,6 +2,7 @@
 #include "GameList.h"
 #include "Path.h"
 #include <vector>
+void init_FeasNode();
 // 记录时间
 std::string printCurrentTime();
 void set_middle_big_gov(std::string &gov);
