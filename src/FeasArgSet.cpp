@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     // 检查节点是不是都存在
     check_path(&feaspath);
     */
-    // 新方式，内置节点，没有的话则再去解析文件
+    // 新方式，内置节点，没有的话则再去解析节点文件
     write_struct(auto_define(), &feaspath, pathProfile);
 
     init_FeasNode();

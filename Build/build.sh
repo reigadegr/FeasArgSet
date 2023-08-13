@@ -25,8 +25,10 @@ compile_start(){
     -fshort-enums -fmerge-all-constants -fno-exceptions \
     -fuse-ld=lld -mtune=native -march=native -flto -pthread \
     -lc++ -fPIC -llog \
+    -Bsymbolic -fdata-sections -ffunction-sections -fno-stack-protector \
     -Wl,-O3,--lto-O3,--gc-sections,--as-needed,--icf=all,-z,norelro,--pack-dyn-relocs=android+relr,-x,-s \
     $(pwd)/*.cpp -o $(dirname "$0")/FeasArgSet && echo "*编译完成*" || exit 1
+    
     /data/data/com.termux/files/usr/bin/aarch64-linux-android-strip $(dirname "$0")/FeasArgSet
     chmod +x $(dirname "$0")/FeasArgSet
     cp -f $(dirname "$0")/FeasArgSet  ../Module/FeasArgSet

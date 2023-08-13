@@ -11,7 +11,8 @@ bool Get1To2(std::string input, std::string output) {
         return false;
 
     std::string value;
-    std::getline(input_path, value);
+    // std::getline(input_path, value);
+    input_path >> value;
     input_path.close();
 
     lock_val(value, output);
@@ -120,7 +121,7 @@ std::string auto_define() {
 
     for (const auto &node : nodes) {
         if (access(node.c_str(), F_OK) == 0) {
-            LOG("内置节点: ", node, " 存在\n");
+            LOG("检测到节点: ", node, " 存在\n");
             return node;
         }
     }

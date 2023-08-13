@@ -47,6 +47,20 @@ void recover_freq() {
                 "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
         Get1To2("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/cpuinfo_min_freq",
                 "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_min_freq");
+        /*
+                system(" cat  /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_max_freq   "
+                       "/sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq");
+
+                system(" cat  /sys/devices/system/cpu/cpufreq/policy4/cpuinfo_max_freq   "
+                       "/sys/devices/system/cpu/cpufreq/policy4/scaling_max_freq");
+                system(" cat  /sys/devices/system/cpu/cpufreq/policy4/cpuinfo_min_freq    "
+                       "/sys/devices/system/cpu/cpufreq/policy4/scaling_min_freq");
+
+                system(" cat  /sys/devices/system/cpu/cpufreq/policy7/cpuinfo_max_freq   "
+                       "/sys/devices/system/cpu/cpufreq/policy7/scaling_max_freq");
+                system(" cat  /sys/devices/system/cpu/cpufreq/policy7/cpuinfo_min_freq    "
+                       "/sys/devices/system/cpu/cpufreq/policy7/scaling_min_freq");
+                       */
     }
 }
 
