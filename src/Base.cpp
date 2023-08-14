@@ -117,6 +117,7 @@ void check_path(const struct FeasPath *p) {
 
 std::string auto_define() {
     std::vector<std::string> nodes = {"/sys/module/perfmgr_mtk/parameters/perfmgr_enable",
+                                      "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable",
                                       "/sys/module/mtk_fpsgo/parameters/perfmgr_enable"};
 
     for (const auto &node : nodes) {
@@ -143,6 +144,14 @@ bool write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathP
         p->Fps = "/sys/module/perfmgr_mtk/parameters/fixed_target_fps";
         p->scaling_a = "/sys/module/perfmgr_mtk/parameters/scaling_a";
         p->scaling_b = "/sys/module/perfmgr_mtk/parameters/scaling_b";
+        return true;
+    }
+
+    if (switch_ctrl == "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable") {
+        p->Feas_switch = "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable";
+        p->Fps = "/sys/module/bocchi_perfmgr/parameters/fixed_target_fps";
+        p->scaling_a = "/sys/module/bocchi_perfmgr/parameters/scaling_a";
+        p->scaling_b = "/sys/module/bocchi_perfmgr/parameters/scaling_b";
         return true;
     }
 

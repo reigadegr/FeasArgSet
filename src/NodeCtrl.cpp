@@ -78,4 +78,11 @@ void init_FeasNode() {
     Mi_Mtk_FEAS.scaling_a = "/sys/module/perfmgr_mtk/parameters/scaling_a";
     Mi_Mtk_FEAS.scaling_b = "/sys/module/perfmgr_mtk/parameters/scaling_b";
     Feas_off(&Mi_Mtk_FEAS);
+
+    FeasPath bocchi;
+    bocchi.Feas_switch = "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable";
+    bocchi.Fps = "/sys/module/bocchi_perfmgr/parameters/fixed_target_fps";
+    bocchi.scaling_a = "/sys/module/bocchi_perfmgr/parameters/scaling_a";
+    bocchi.scaling_b = "/sys/module/bocchi_perfmgr/parameters/scaling_b";
+    Feas_off(&Mi_Mtk_FEAS);
 }
