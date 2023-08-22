@@ -35,7 +35,7 @@ static void lock_val(T value, const std::string &path) {
 
     std::ofstream target_file(path, std::ios::out | std::ios::trunc);
     if (!target_file.is_open()) {
-        std::cerr << "Error opening file for writing: " << path << std::endl;
+        std::cerr << "无法打开文件进行写操作: " << path << std::endl;
         return;
     }
 
