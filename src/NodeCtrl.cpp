@@ -1,3 +1,4 @@
+#include "include/Check.h"
 #include "include/LockValue.h"
 #include "include/NodePermission.h"
 #include "include/function.h"
@@ -31,12 +32,14 @@ void Allow_system_operation() {
 void set_gov(std::string &gov) {
     for (int i = 0; i <= 7; i++) {
         lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
+        check_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
     }
 }
 
 void set_middle_big_gov(std::string &gov) {
     for (int i = 1; i <= 7; i++) {
         lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
+        check_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
     }
 }
 
@@ -62,27 +65,4 @@ void recover_freq() {
                        "/sys/devices/system/cpu/cpufreq/policy7/scaling_min_freq");
                        */
     }
-}
-
-void init_FeasNode() {
-    FeasPath Pandora_mtk;
-    Pandora_mtk.Feas_switch = "/sys/module/mtk_fpsgo/parameters/perfmgr_enable";
-    Pandora_mtk.Fps = "/sys/module/mtk_fpsgo/parameters/fixed_target_fps";
-    Pandora_mtk.scaling_a = "/sys/module/mtk_fpsgo/parameters/scaling_a";
-    Pandora_mtk.scaling_b = "/sys/module/mtk_fpsgo/parameters/scaling_b";
-    Feas_off(&Pandora_mtk);
-
-    FeasPath Mi_Mtk_FEAS;
-    Mi_Mtk_FEAS.Feas_switch = "/sys/module/perfmgr_mtk/parameters/perfmgr_enable";
-    Mi_Mtk_FEAS.Fps = "/sys/module/perfmgr_mtk/parameters/fixed_target_fps";
-    Mi_Mtk_FEAS.scaling_a = "/sys/module/perfmgr_mtk/parameters/scaling_a";
-    Mi_Mtk_FEAS.scaling_b = "/sys/module/perfmgr_mtk/parameters/scaling_b";
-    Feas_off(&Mi_Mtk_FEAS);
-
-    FeasPath bocchi;
-    bocchi.Feas_switch = "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable";
-    bocchi.Fps = "/sys/module/bocchi_perfmgr/parameters/fixed_target_fps";
-    bocchi.scaling_a = "/sys/module/bocchi_perfmgr/parameters/scaling_a";
-    bocchi.scaling_b = "/sys/module/bocchi_perfmgr/parameters/scaling_b";
-    Feas_off(&Mi_Mtk_FEAS);
 }
