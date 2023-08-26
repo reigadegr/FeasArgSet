@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
                       std::ref(now_package));
 
         t.join();
-        */
+    */
     // 开始运行
     matchingThread(gamesaver, middle_big_core_in_game, feaspath, gov, now_package);
 }

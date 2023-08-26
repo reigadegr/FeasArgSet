@@ -4,9 +4,8 @@
 #include <sstream>
 #include <thread>
 std::string auto_define() {
-    std::vector<std::string> nodes = {"/sys/module/perfmgr_mtk/parameters/perfmgr_enable",
-                                      "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable",
-                                      "/sys/module/mtk_fpsgo/parameters/perfmgr_enable"};
+    std::vector<std::string> nodes = {"/sys/module/perfmgr_mtk/parameters", "/sys/module/bocchi_perfmgr/parameters",
+                                      "/sys/module/mtk_fpsgo/parameters"};
 
     for (const auto &node : nodes) {
         if (access(node.c_str(), F_OK) == 0) {
