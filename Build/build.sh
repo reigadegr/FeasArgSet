@@ -30,7 +30,7 @@ compile_start(){
     $(pwd)/*.cpp -o $(dirname "$0")/FeasArgSet && echo "*编译完成*" || exit 1
     
     /data/data/com.termux/files/usr/bin/aarch64-linux-android-strip $(dirname "$0")/FeasArgSet
-    /data/data/com.termux/files/usr/bin/upx $(dirname "$0")/FeasArgSet
+    #/data/data/com.termux/files/usr/bin/upx -9 $(dirname "$0")/FeasArgSet
     chmod +x $(dirname "$0")/FeasArgSet
     cp -f $(dirname "$0")/FeasArgSet  ../Module/FeasArgSet
     mv -f $(dirname "$0")/FeasArgSet  ../Test/FeasArgSet
