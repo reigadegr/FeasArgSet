@@ -4,9 +4,9 @@
 #include <sstream>
 #include <thread>
 std::string auto_define() {
-    std::vector<std::string> nodes = {"/sys/module/perfmgr_mtk/parameters/perfmgr_enable",
-                                      "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable",
-                                      "/sys/module/mtk_fpsgo/parameters/perfmgr_enable"};
+    std::vector<std::string> nodes = {
+        "/sys/module/perfmgr_mtk/parameters/perfmgr_enable", "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable",
+        "/sys/module/mtk_fpsgo/parameters/perfmgr_enable", "/sys/module/perfmgr/parameters/perfmgr_enable"};
 
     for (const auto &node : nodes) {
         if (access(node.c_str(), F_OK) == 0) {
@@ -43,7 +43,13 @@ bool write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathP
         p->scaling_b = "/sys/module/bocchi_perfmgr/parameters/scaling_b";
         return true;
     }
-
+    if (switch_ctrl == "/sys/module/perfmgr/parameters/perfmgr_enable") {
+        p->Feas_switch = "/sys/module/perfmgr/parameters/perfmgr_enable";
+        p->Fps = "/sys/module/perfmgr/parameters/fixed_target_fps";
+        p->scaling_a = "/sys/module/perfmgr/parameters/scaling_a";
+        p->scaling_b = "/sys/module/perfmgr/parameters/scaling_b";
+        return true;
+    }
     if (switch_ctrl == "ReadFile") {
         LOG("内置节点不存在，读取文件\n");
         // 实例化FeasPath的对象feaspath
@@ -77,4 +83,11 @@ void init_FeasNode() {
     bocchi.scaling_a = "/sys/module/bocchi_perfmgr/parameters/scaling_a";
     bocchi.scaling_b = "/sys/module/bocchi_perfmgr/parameters/scaling_b";
     Feas_off(&Mi_Mtk_FEAS);
+
+    FeasPath perfmgr_org;
+    perfmgr_org.Feas_switch = "/sys/module/perfmgr/parameters/perfmgr_enable";
+    perfmgr_org.Fps = "/sys/module/perfmgr/parameters/fixed_target_fps";
+    perfmgr_org.scaling_a = "/sys/module/perfmgr/parameters/scaling_a";
+    perfmgr_org.scaling_b = "/sys/module/perfmgr/parameters/scaling_b";
+    Feas_off(&perfmgr_org);
 }
