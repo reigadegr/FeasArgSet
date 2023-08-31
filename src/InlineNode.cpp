@@ -4,8 +4,9 @@
 #include <sstream>
 #include <thread>
 std::string auto_define() {
-    std::vector<std::string> nodes = {"/sys/module/perfmgr_mtk/parameters", "/sys/module/bocchi_perfmgr/parameters",
-                                      "/sys/module/mtk_fpsgo/parameters"};
+    std::vector<std::string> nodes = {"/sys/module/perfmgr_mtk/parameters/perfmgr_enable",
+                                      "/sys/module/bocchi_perfmgr/parameters/perfmgr_enable",
+                                      "/sys/module/mtk_fpsgo/parameters/perfmgr_enable"};
 
     for (const auto &node : nodes) {
         if (access(node.c_str(), F_OK) == 0) {
@@ -19,6 +20,7 @@ std::string auto_define() {
 bool write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathProfile) {
 
     if (switch_ctrl == "/sys/module/mtk_fpsgo/parameters/perfmgr_enable") {
+        // LOG("开始记录");
         p->Feas_switch = "/sys/module/mtk_fpsgo/parameters/perfmgr_enable";
         p->Fps = "/sys/module/mtk_fpsgo/parameters/fixed_target_fps";
         p->scaling_a = "/sys/module/mtk_fpsgo/parameters/scaling_a";

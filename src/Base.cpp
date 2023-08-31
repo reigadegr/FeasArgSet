@@ -27,23 +27,24 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
     // LOG(tmp," : ",secondArg);
 }
 void debugnode() {
-    system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
-    system("echo -n \"pandora_fps: \" && cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
+    /*
+        system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
+        system("echo -n \"pandora_fps: \" && cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
 
-    system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
-    system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
-
-    system("echo \"---------------------------------\"");
+        system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
+        system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
+    */
 
     system("cat /sys/module/mtk_fpsgo/parameters/perfmgr_enable");
     system("echo -n \"xiaomiFeas_fps: \" && cat /sys/module/mtk_fpsgo/parameters/fixed_target_fps");
 
     system("cat /sys/module/mtk_fpsgo/parameters/scaling_a");
     system("cat /sys/module/mtk_fpsgo/parameters/scaling_b");
-
+    system("ls -al /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq");
     system("cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor");
     system("cat /sys/devices/system/cpu/cpufreq/policy4/scaling_governor");
     system("cat /sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
+    system("echo \"---------------------------------\"");
 }
 bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {

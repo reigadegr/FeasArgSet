@@ -3,6 +3,7 @@
 #include "include/NodePermission.h"
 #include "include/function.h"
 void Feas_on(const struct listGame *o, const struct FeasPath *p) {
+    LOG("feas开关为: ", p->Feas_switch);
     lock_val(1, p->Feas_switch);
     lock_val(o->fixed_target_fps, p->Fps);
     lock_val(o->scaling_a, p->scaling_a);
@@ -24,20 +25,21 @@ void Feas_off(const struct FeasPath *p) {
 }
 void Allow_system_operation() {
     // 进入游戏，解锁scaling_max_freq节点权限
-    for (int i = 0; i <= 7; i++) {
+    for (int i = 0; i < 8; i++) {
         Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
     }
 }
 
 void set_gov(std::string &gov) {
-    for (int i = 0; i <= 7; i++) {
+    for (int i = 0; i < 8; i++) {
         lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
         check_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
     }
 }
 
 void set_middle_big_gov(std::string &gov) {
-    for (int i = 1; i <= 7; i++) {
+    // 设置游戏中中大核调速器
+    for (int i = 1; i < 8; i++) {
         lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
         check_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
     }
@@ -45,10 +47,11 @@ void set_middle_big_gov(std::string &gov) {
 
 // Recover the scaling_max_freq and scaling_min_freq from cpu_info_max_freq and cpu_info_min_freq
 void recover_freq() {
-    for (int i = 0; i <= 7; i++) {
+    for (int i = 0; i < 8; i++) {
         Get1To2("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/cpuinfo_max_freq",
                 "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
         Get1To2("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/cpuinfo_min_freq",
                 "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_min_freq");
+        Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
     }
 }

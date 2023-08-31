@@ -42,7 +42,7 @@ static void lock_val(T value, const std::string &path) {
     target_file << value;
     target_file.close();
 
-    chmod(path.c_str(), 0444);
+    chmod(path.c_str(), 0555);
 
     // mask value
     /*

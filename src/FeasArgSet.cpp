@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     */
     // 新方式，内置节点，没有的话则再去解析节点文件
     write_struct(auto_define(), &feaspath, pathProfile);
-
+    // LOG("开关: ", feaspath.Feas_switch);
     init_FeasNode();
 
     //  设置游戏默认中大核调速器(默认值)
