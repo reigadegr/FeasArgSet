@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
         bool CheckPathV2 = check_path(&feaspath);
         if (!CheckPathV2) {
             LOG("配置文件有误，且无法自动生成节点，请修改配置文件后使用");
+            LOG("进程已结束");
             return 1;
         } else {
             LOG("自动生成节点成功");
