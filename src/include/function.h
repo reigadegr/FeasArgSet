@@ -2,6 +2,9 @@
 #include "GameList.h"
 #include "Path.h"
 #include <vector>
+
+std::string FindStr(std::string dir, std::string str, std::string reduceStr);
+void mk_node(std::string name, struct FeasPath *p);
 void init_FeasNode();
 // 记录时间
 std::string printCurrentTime();
@@ -17,7 +20,7 @@ bool readPathProfile(const char *pathProfile, struct FeasPath *p);
 auto Testfile(const char *location);
 bool Get1To2(std::string input, std::string output);
 // 检查
-void check_path(const struct FeasPath *p);
+bool check_path(const struct FeasPath *p);
 // get TaAPP name
 std::string execCmdSync(const std::string &command, const std::vector<std::string> &args);
 std::string getTopApp();

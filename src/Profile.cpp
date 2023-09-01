@@ -93,7 +93,7 @@ bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
             for (const auto &config : configs) {
                 if (buf.find(config.key) != std::string::npos) {
                     GetSecondArg(buf, *config.value);
-                    LOG(config.description, ": ", *config.value, "\n");
+                    //  LOG(config.description, ": ", *config.value, "\n");
                     break;
                 }
             }

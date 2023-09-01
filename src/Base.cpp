@@ -70,7 +70,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
             set_middle_big_gov(middle_big_core_in_game);
             Allow_system_operation();
             // 调试debug
-            // debugnode();
+            //debugnode();
             return true;
         }
     }
@@ -83,7 +83,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
     recover_freq();
     set_gov(gov);
     // 调试debug
-    // debugnode();
+   // debugnode();
     return true;
 }
 
@@ -94,24 +94,15 @@ void matchingThread(std::vector<listGame> gamesaver, std::string &middle_big_cor
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
-void check_path(const struct FeasPath *p) {
+bool check_path(const struct FeasPath *p) {
     // check path
     std::vector<std::string> nodes = {p->Feas_switch, p->Fps, p->scaling_a, p->scaling_b};
-    bool check = false;
     for (const auto &node : nodes) {
         if (access(node.c_str(), F_OK) == -1) {
-            check = true;
-            LOG("节点: ", node, "不存在");
-            // return -1;
+            LOG("你设置的节点: ", node, "不存在");
+            return false;
         }
     }
-    if (check) {
-        LOG("设置了不存在的节点");
-        LOG("请检查: ");
-        LOG("1,设备是否支持Feas功能");
-        LOG("2,节点是否设置正确");
-        LOG("进程已结束");
-        exit(1);
-    }
     // check down
+    return true;
 }
