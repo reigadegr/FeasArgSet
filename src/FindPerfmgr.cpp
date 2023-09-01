@@ -13,7 +13,6 @@ std::string FindStr(std::string dir, std::string str, std::string reduceStr) {
         std::string path = entry.path().string();
 
         if (path.find(str) != std::string::npos) {
-
             //$1: 起始位置; $2: 裁剪的长度
             std::string moduleName = path.substr(dir.size() + 1, path.find(reduceStr) - dir.size() - 1);
             log(moduleName);
