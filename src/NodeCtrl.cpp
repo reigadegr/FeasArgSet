@@ -3,7 +3,6 @@
 #include "include/NodePermission.h"
 #include "include/function.h"
 void Feas_on(const struct listGame *o, const struct FeasPath *p) {
-    LOG("feas开关为: ", p->Feas_switch);
     lock_val(1, p->Feas_switch);
     lock_val(o->fixed_target_fps, p->Fps);
     lock_val(o->scaling_a, p->scaling_a);

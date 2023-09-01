@@ -27,14 +27,6 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
     // LOG(tmp," : ",secondArg);
 }
 void debugnode() {
-    /*
-        system("cat /sys/module/perfmgr_mtk/parameters/perfmgr_enable");
-        system("echo -n \"pandora_fps: \" && cat /sys/module/perfmgr_mtk/parameters/fixed_target_fps");
-
-        system("cat /sys/module/perfmgr_mtk/parameters/scaling_a");
-        system("cat /sys/module/perfmgr_mtk/parameters/scaling_b");
-    */
-
     system("cat /sys/module/mtk_fpsgo/parameters/perfmgr_enable");
     system("echo -n \"xiaomiFeas_fps: \" && cat /sys/module/mtk_fpsgo/parameters/fixed_target_fps");
 
@@ -70,7 +62,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
             set_middle_big_gov(middle_big_core_in_game);
             Allow_system_operation();
             // 调试debug
-            //debugnode();
+            // debugnode();
             return true;
         }
     }
@@ -83,7 +75,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
     recover_freq();
     set_gov(gov);
     // 调试debug
-   // debugnode();
+    // debugnode();
     return true;
 }
 

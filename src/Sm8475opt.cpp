@@ -35,9 +35,9 @@ void sm8475opt() {
     lock_val(1804000, "/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/min_freq");
     lock_val(1708800, "/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/min_freq");
 
-    std::string performance = "performance";
     // # Lock performance governor on Prime and Gold cluster
     /*
+    std::string performance = "performance";
     lock_val(performance, "/sys/devices/system/cpu/cpufreq/policy4/scaling_governor");
     lock_val(performance, "/sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
     */

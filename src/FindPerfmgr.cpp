@@ -47,6 +47,7 @@ void mk_node(std::string name, struct FeasPath *p) {
     p->Fps = "/sys/module/" + name + "/parameters/fixed_target_fps";
     p->scaling_a = "/sys/module/" + name + "/parameters/scaling_a";
     p->scaling_b = "/sys/module/" + name + "/parameters/scaling_b";
+    LOG("以下是你的节点: ");
     LOG(p->Feas_switch);
     LOG(p->Fps);
     LOG(p->scaling_a);

@@ -14,9 +14,11 @@ int main(int argc, char *argv[]) {
     if (!CheckPathV) {
         mk_node(FindStr("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
     }
-    // write_struct(auto_define(), &feaspath, pathProfile);
-    //   init_FeasNode();
-
+    bool CheckPathV2 = check_path(&feaspath);
+    if (!CheckPathV2) {
+        LOG("配置文件有误，且无法自动生成节点，请修改配置文件后使用");
+        return 1;
+    }
     //  设置游戏默认中大核调速器(默认值)
     std::string middle_big_core_in_game = "performance";
 
