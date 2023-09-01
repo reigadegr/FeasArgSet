@@ -37,6 +37,8 @@ void sm8475opt() {
 
     std::string performance = "performance";
     // # Lock performance governor on Prime and Gold cluster
+    /*
     lock_val(performance, "/sys/devices/system/cpu/cpufreq/policy4/scaling_governor");
     lock_val(performance, "/sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
+    */
 }
