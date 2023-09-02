@@ -1,7 +1,7 @@
 #include "include/LockValue.h"
 #include "include/function.h"
 #if 0
-    以下功能不是作者原创
+    以下为版权信息
     Optimum Memory - Subsystem performance for gaming
     SM8475 platform
     DoC : 2023 / 8 / 28

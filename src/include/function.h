@@ -3,7 +3,7 @@
 #include "Path.h"
 #include <vector>
 bool AutoNode(FeasPath &feaspath);
-std::string FindStr(std::string dir, std::string str, std::string reduceStr);
+std::string FindPerfmgrName(std::string dir, std::string str, std::string reduceStr);
 void mk_node(std::string name, struct FeasPath *p);
 void init_FeasNode();
 // 记录时间

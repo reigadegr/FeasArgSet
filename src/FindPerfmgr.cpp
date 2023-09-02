@@ -6,7 +6,7 @@
 // #define LOG(x) std::cout << x << std::endl;
 //  参数分别为: 目录名，目标文件名，裁剪的字符串
 
-std::string FindStr(std::string dir, std::string str, std::string reduceStr) {
+std::string FindPerfmgrName(std::string dir, std::string str, std::string reduceStr) {
     LOG("开始查找节点");
 
     for (const auto &entry : std::filesystem::recursive_directory_iterator(dir)) {
@@ -33,8 +33,8 @@ std::string FindStr(std::string dir, std::string str, std::string reduceStr) {
     };
     调用说明:
     FeasPath feaspath;
-    实例化后进行地址传递
-    mk_node(FindStr("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
+    创建对象后进行地址传递以实例化
+    mk_node(FindPerfmgrName("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
 #endif
 
 void mk_node(std::string name, struct FeasPath *p) {

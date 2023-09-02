@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     // 读取路径配置文件
     readPathProfile(pathProfile, &feaspath);
     if (!AutoNode(feaspath)) {
-        return 0;
+        return 1;
     }
 
     //  设置游戏默认中大核调速器(默认值)

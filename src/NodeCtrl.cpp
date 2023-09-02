@@ -56,7 +56,7 @@ void recover_freq() {
 }
 bool AutoNode(FeasPath &feaspath) {
     if (!check_path(&feaspath)) {
-        mk_node(FindStr("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
+        mk_node(FindPerfmgrName("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
         if (!check_path(&feaspath)) {
             LOG("配置文件有误，且无法自动生成节点，请修改配置文件后使用");
             LOG("进程已结束");

@@ -4,8 +4,7 @@
 
 ***编译***
 #环境构建
-pkg install clang -y
-pkg add ndk-multilib
+pkg install clang -y && pkg add ndk-multilib -y
 #clone项目
 git clone https://github.com/reigadegr/FeasArgSet --depth 1
 cd $(pwd)/FeasArgSet/Build
