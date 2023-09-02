@@ -24,11 +24,10 @@ compile_start(){
     -fno-rtti -fvisibility=hidden -static-libgcc -static-libstdc++ \
     -fshort-enums -fmerge-all-constants -fno-exceptions \
     -fuse-ld=lld -mtune=native -march=native -flto -pthread \
-    -fPIC -llog \
     -Bsymbolic -fdata-sections -ffunction-sections -fno-stack-protector \
     -Wl,-O3,--lto-O3,--gc-sections,--as-needed,--icf=all,-z,norelro,--pack-dyn-relocs=android+relr,-x,-s \
     $(pwd)/*.cpp -o $(dirname "$0")/FeasArgSet && echo "*编译完成*" || exit 1
-    
+    #-fPIC -llog \
     /data/data/com.termux/files/usr/bin/aarch64-linux-android-strip $(dirname "$0")/FeasArgSet
     #/data/data/com.termux/files/usr/bin/upx -9 $(dirname "$0")/FeasArgSet
     chmod +x $(dirname "$0")/FeasArgSet

@@ -12,20 +12,8 @@ int main(int argc, char *argv[]) {
     FeasPath feaspath;
     // 读取路径配置文件
     readPathProfile(pathProfile, &feaspath);
-
-    bool CheckPathV = check_path(&feaspath);
-    if (!CheckPathV) {
-        mk_node(FindStr("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
-        bool CheckPathV2 = check_path(&feaspath);
-        if (!CheckPathV2) {
-            LOG("配置文件有误，且无法自动生成节点，请修改配置文件后使用");
-            LOG("进程已结束");
-            return 1;
-        } else {
-            LOG("自动生成节点成功");
-        }
-    } else {
-        LOG("节点设置全部正确");
+    if (!AutoNode(feaspath)) {
+        return 0;
     }
 
     //  设置游戏默认中大核调速器(默认值)

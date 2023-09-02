@@ -3,8 +3,8 @@
 #include <fstream>
 #include <iostream>
 
-#define log(x) std::cout << x << std::endl;
-// 参数分别为: 目录名，目标文件名，裁剪的字符串
+// #define LOG(x) std::cout << x << std::endl;
+//  参数分别为: 目录名，目标文件名，裁剪的字符串
 
 std::string FindStr(std::string dir, std::string str, std::string reduceStr) {
     LOG("开始查找节点");
@@ -15,12 +15,12 @@ std::string FindStr(std::string dir, std::string str, std::string reduceStr) {
         if (path.find(str) != std::string::npos) {
             //$1: 起始位置; $2: 裁剪的长度
             std::string moduleName = path.substr(dir.size() + 1, path.find(reduceStr) - dir.size() - 1);
-            log(moduleName);
-            log("查找成功");
+            LOG(moduleName);
+            LOG("查找成功");
             return moduleName;
         }
     }
-    log("查找失败");
+    LOG("查找失败");
     return "UnSupport";
 }
 
