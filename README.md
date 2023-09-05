@@ -3,10 +3,12 @@
 注意，github的release和酷安发到蓝奏云的模块不会随着github代码的更新实时更新，想要使用最新的模块建议git clone https://github.com/reigadegr/FeasArgSet 后，打包Module文件夹的全部文件为zip，使用magisk刷入以更新
 
 ***编译***
+```bash
 #环境构建
 pkg install clang -y && pkg add ndk-multilib -y
 #clone项目
 git clone https://github.com/reigadegr/FeasArgSet --depth 1
 cd $(pwd)/FeasArgSet/Build
 sh build.sh
+```
 ***完成***

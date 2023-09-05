@@ -4,6 +4,7 @@ remove_file(){
 }
 
 format_code(){
+    echo "当前时间：$(date +%Y) 年 $(date +%m) 月 $(date +%d) 日 $(date +%H) 时 $(date +%M) 分 $(date +%S) 秒"
     code_file="
         $(dirname "$0")/../src/*.cpp
         $(dirname "$0")/../src/include/*.h
@@ -35,8 +36,6 @@ compile_start(){
     mv -f $(dirname "$0")/FeasArgSet  ../Test/FeasArgSet
     echo "当前时间：$(date +%Y) 年 $(date +%m) 月 $(date +%d) 日 $(date +%H) 时 $(date +%M) 分 $(date +%S) 秒"
 }
-
-echo "当前时间：$(date +%Y) 年 $(date +%m) 月 $(date +%d) 日 $(date +%H) 时 $(date +%M) 分 $(date +%S) 秒"
 
 format_code
 compile_start

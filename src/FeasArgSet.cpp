@@ -3,7 +3,7 @@
 #include <iostream>
 #include <thread>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
     const char *profile = argv[1];
     const char *pathProfile = argv[2];
     // ***新方式，读取文件，没有的话去/sys搜索节点***
@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     FeasPath feaspath;
     // 读取路径配置文件
     readPathProfile(pathProfile, &feaspath);
-    if (!AutoNode(feaspath)) {
+    if (bool MkNodeSuccessfully = AutoNode(feaspath); !MkNodeSuccessfully) {
         return 1;
     }
 
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     // 读取包名列表
     bool ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov);
 
-    if (!ReadProfile) {
+    if (bool WhetherReadSuccessfully = ReadProfile; !WhetherReadSuccessfully) {
         LOG("读取文件失败，进程结束");
         return 1;
     }

@@ -8,16 +8,15 @@
 
 std::string FindPerfmgrName(std::string dir, std::string str, std::string reduceStr) {
     LOG("开始查找节点");
-
     for (const auto &entry : std::filesystem::recursive_directory_iterator(dir)) {
         std::string path = entry.path().string();
 
         if (path.find(str) != std::string::npos) {
             //$1: 起始位置; $2: 裁剪的长度
-            std::string moduleName = path.substr(dir.size() + 1, path.find(reduceStr) - dir.size() - 1);
-            LOG(moduleName);
+            std::string PerfmgrName = path.substr(dir.size() + 1, path.find(reduceStr) - dir.size() - 1);
+            LOG(PerfmgrName);
             LOG("查找成功");
-            return moduleName;
+            return PerfmgrName;
         }
     }
     LOG("查找失败");
