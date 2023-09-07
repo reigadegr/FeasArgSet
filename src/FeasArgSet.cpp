@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    //  设置游戏默认中大核调速器(默认值)
+    //  设置游戏内中大核调速器(默认值)
     std::string middle_big_core_in_game = "performance";
 
     // 设置非游戏全局调速器(默认值)
@@ -25,9 +25,7 @@ int main(int argc, char **argv) {
     std::vector<listGame> gamesaver;
 
     // 读取包名列表
-    bool ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov);
-
-    if (bool WhetherReadSuccessfully = ReadProfile; !WhetherReadSuccessfully) {
+    if (bool ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov); !ReadProfile) {
         LOG("读取文件失败，进程结束");
         return 1;
     }
