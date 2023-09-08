@@ -86,6 +86,7 @@ void matchingThread(std::vector<listGame> gamesaver, std::string &middle_big_cor
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
+
 bool check_path(const struct FeasPath *p) {
     // check path
     std::vector<std::string> nodes = {p->Feas_switch, p->Fps, p->scaling_a, p->scaling_b};
@@ -96,5 +97,17 @@ bool check_path(const struct FeasPath *p) {
         }
     }
     // check down
+    return true;
+}
+
+bool CheckArg(int &argc) {
+    if (argc == 3) {
+        return true;
+    } else if (argc < 3) {
+        LOG("命令行参数个数有误，需要有", 3, "个\n", "当前为: ", argc, "个");
+        return false;
+    } else if (argc > 3) {
+        LOG("Warning: 命令行参数过多，当前有", argc, "个");
+    }
     return true;
 }

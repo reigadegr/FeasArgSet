@@ -1,9 +1,13 @@
 #include "include/function.h"
 #include <fstream>
 #include <iostream>
+#include <memory>
 #include <thread>
 
 int main(int argc, char **argv) {
+    if (bool ArgcTrue = CheckArg(argc); !ArgcTrue) {
+        return 1;
+    }
     const char *profile = argv[1];
     const char *pathProfile = argv[2];
     // ***新方式，读取文件，没有的话去/sys搜索节点***
@@ -23,8 +27,8 @@ int main(int argc, char **argv) {
     std::string gov = "schedutil";
     // 创建结构体动态数组
     std::vector<listGame> gamesaver;
-
-    // 读取包名列表
+    // std::vector<std::unique_ptr<listGame>> gamesaver;
+    //  读取包名列表
     if (bool ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov); !ReadProfile) {
         LOG("读取文件失败，进程结束");
         return 1;

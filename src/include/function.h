@@ -2,6 +2,7 @@
 #include "GameList.h"
 #include "Path.h"
 #include <vector>
+bool CheckArg(int &argc);
 bool AutoNode(FeasPath &feaspath);
 std::string FindPerfmgrName(std::string dir, std::string str, std::string reduceStr);
 void mk_node(std::string name, struct FeasPath *p);
