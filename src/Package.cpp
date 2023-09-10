@@ -6,6 +6,8 @@
 #include <vector>
 #if 0
     基于shadow3aaa的版本，微调
+    使用说明：直接接收getTopApp()函数的返回值即可获取包名
+    例如：std::string TopApp = getTopApp();
 #endif
 std::string execCmdSync(const std::string &command, const std::vector<std::string> &args) {
     // 将命令和参数拼接为一个字符串
@@ -30,17 +32,16 @@ auto Testfile(const char *location) { return access(location, F_OK) == 0; }
 std::string getTopApp() {
     if (Testfile("/sys/kernel/gbe/gbe2_fg_pid")) {
         std::string pid, name;
-        std::ifstream f_pid, app;
-        f_pid.open("/sys/kernel/gbe/gbe2_fg_pid");
-        if (!f_pid) {
+        std::ifstream f_pid("/sys/kernel/gbe/gbe2_fg_pid");
+        if (!f_pid.is_open()) {
             return getTopAppShell();
         }
         f_pid >> pid;
         f_pid.close();
 
-        app.open("/proc/" + pid + "/cmdline");
+        std::ifstream app("/proc/" + pid + "/cmdline");
 
-        if (!app) {
+        if (!app.is_open()) {
             return getTopAppShell();
         }
 
