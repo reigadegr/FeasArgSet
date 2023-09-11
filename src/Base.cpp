@@ -38,7 +38,7 @@ void debugnode() {
     system("cat /sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
     system("echo \"---------------------------------\"");
 }
-bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
+bool matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     std::string TopApp = getTopApp();
     // LOG("前台包名: ",TopApp);
@@ -79,7 +79,7 @@ bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_cor
     return true;
 }
 
-void matchingThread(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
+void matchingThread(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     while (true) {
         matching_start(gamesaver, middle_big_core_in_game, feaspath, gov, now_package);

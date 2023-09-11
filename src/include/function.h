@@ -28,9 +28,9 @@ std::string getTopApp();
 std::string getTopAppShell();
 std::string checkSymbol(std::string &name);
 // running
-bool matching_start(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
+bool matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package);
-void matchingThread(std::vector<listGame> gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
+void matchingThread(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package);
 
 void set_gov(std::string &gov);
