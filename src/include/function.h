@@ -23,7 +23,7 @@ bool Get1To2(std::string input, std::string output);
 // 检查
 bool check_path(const struct FeasPath *p);
 // get TaAPP name
-std::string execCmdSync(const std::string &command, const std::vector<std::string> &args);
+std::string execCmdSync(std::string command, const std::vector<std::string> &args);
 std::string getTopApp();
 std::string getTopAppShell();
 std::string checkSymbol(std::string &name);

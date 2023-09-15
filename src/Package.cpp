@@ -9,6 +9,7 @@
     使用说明：直接接收getTopApp()函数的返回值即可获取包名
     例如：std::string TopApp = getTopApp();
 #endif
+/*
 std::string execCmdSync(const std::string &command, const std::vector<std::string> &args) {
     // 将命令和参数拼接为一个字符串
     std::string cmdStr = command;
@@ -28,6 +29,26 @@ std::string execCmdSync(const std::string &command, const std::vector<std::strin
     pclose(pipe);
     return result;
 }
+*/
+std::string execCmdSync(std::string command, const std::vector<std::string> &args) {
+    // 将命令和参数拼接为一个字符串
+    for (const auto &arg : args) {
+        command += " ";
+        command += arg;
+    }
+    // 执行命令并获取输出
+    FILE *pipe = popen(command.c_str(), "r");
+    if (!pipe)
+        return {};
+    char buffer[256];
+    std::string result;
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+        result += buffer;
+    }
+    pclose(pipe);
+    return result;
+}
+
 auto Testfile(const char *location) { return access(location, F_OK) == 0; }
 std::string getTopApp() {
     if (Testfile("/sys/kernel/gbe/gbe2_fg_pid")) {
@@ -50,6 +71,7 @@ std::string getTopApp() {
 
         return checkSymbol(name);
     }
+    // LOG("SHELL");
     return getTopAppShell();
 }
 
