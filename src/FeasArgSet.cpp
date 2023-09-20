@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     // 读取路径配置文件
     readPathProfile(pathProfile, &feaspath);
     if (bool MkNodeSuccessfully = AutoNode(feaspath); !MkNodeSuccessfully) {
-        return 1;
+        return 2;
     }
 
     //  设置游戏内中大核调速器(默认值)
@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     //  读取包名列表
     if (bool ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov); !ReadProfile) {
         LOG("读取文件失败，进程结束");
-        return 1;
+        return 3;
     }
 
     // 初始化governor和scaling_max freq

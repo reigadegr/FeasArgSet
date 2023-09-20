@@ -23,7 +23,7 @@ compile_start(){
     /data/data/com.termux/files/usr/bin/aarch64-linux-android-clang++ \
     -Wall -fomit-frame-pointer -std=c++2b -stdlib=libc++ -Os -flto \
     -fno-rtti -fvisibility=hidden -static-libgcc -static-libstdc++ \
-    -fshort-enums -fmerge-all-constants -fno-exceptions \
+    -fshort-enums -fmerge-all-constants -fno-exceptions -lsqlite3 \
     -fuse-ld=lld -mtune=native -march=native -flto -pthread \
     -Bsymbolic -fdata-sections -ffunction-sections -fno-stack-protector \
     -Wl,-O3,--lto-O3,--gc-sections,--as-needed,--icf=all,-z,norelro,--pack-dyn-relocs=android+relr,-x,-s \
