@@ -11,7 +11,6 @@ bool Get1To2(std::string input, std::string output) {
         return false;
 
     std::string value;
-    // std::getline(input_path, value);
     input_path >> value;
     input_path.close();
 
