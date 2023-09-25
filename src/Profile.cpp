@@ -19,8 +19,8 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
             continue;
         }
         if (buf[0] == '$') {
-            std::istringstream iss(buf.substr(1)); // 去掉$符号
-            iss >> middle_big_core_in_game;
+            std::istringstream iss1(buf.substr(1)); // 去掉$符号
+            iss1 >> middle_big_core_in_game;
             LOG("游戏内中大核调速器为: ", middle_big_core_in_game);
             continue;
         }

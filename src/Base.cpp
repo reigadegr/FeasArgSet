@@ -88,7 +88,7 @@ void matchingThread(std::vector<listGame> &gamesaver, std::string &middle_big_co
 
 bool check_path(const struct FeasPath *p) {
     // check path
-    std::vector<std::string> nodes = {p->Feas_switch, p->Fps, p->scaling_a, p->scaling_b};
+    std::vector<std::string> nodes = {p->Feas_switch, p->Fps};
     for (const auto &node : nodes) {
         if (access(node.c_str(), F_OK) == -1) {
             LOG("你设置的节点: ", node, "不存在");

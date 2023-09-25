@@ -40,7 +40,7 @@ std::string execCmdSync(std::string command, const std::vector<std::string> &arg
     FILE *pipe = popen(command.c_str(), "r");
     if (!pipe)
         return {};
-    char buffer[256];
+    char buffer[2];
     std::string result;
     while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
         result += buffer;
