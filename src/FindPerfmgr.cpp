@@ -1,11 +1,12 @@
-#include "include/function.h"
 #include <filesystem>
-#include <iostream>
+
+#include "include/function.h"
+
 //  参数分别为: 目录名，目标文件名，裁剪的字符串
-std::string FindPerfmgrName(std::string dir, std::string str, std::string reduceStr) {
+auto FindPerfmgrName(const std::string &dir, const std::string &str, const std::string &reduceStr) -> std::string {
     LOG("开始查找节点");
     for (const auto &entry : std::filesystem::recursive_directory_iterator(dir)) {
-        std::string path = entry.path().string();
+        std::string const path = entry.path().string();
 
         if (path.find(str) != std::string::npos) {
             //$1: 起始位置; $2: 裁剪的长度
@@ -34,7 +35,7 @@ std::string FindPerfmgrName(std::string dir, std::string str, std::string reduce
     mk_node(FindPerfmgrName("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
 #endif
 
-void mk_node(std::string name, struct FeasPath *p) {
+void mk_node(const std::string &name, struct FeasPath *p) {
     if (name == "UnSupport") {
         LOG("设备不支持Feas功能");
         exit(1);

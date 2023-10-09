@@ -1,18 +1,19 @@
+#ifndef CHECK_H
+#define CHECK_H
+
 #pragma once
-#include "function.h"
+
 #include <fstream>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <sys/mount.h>
-#include <sys/stat.h>
 #include <unistd.h>
+
+#include "function.h"
 
 template <typename T>
 static void check_val(T value, const std::string &path) {
 
-    if (access(path.c_str(), F_OK) == -1)
+    if (access(path.c_str(), F_OK) == -1) {
         return;
+    }
 
     // umount(path.c_str());
 
@@ -25,10 +26,11 @@ static void check_val(T value, const std::string &path) {
 
         if (temp == value) {
             return;
-        } else {
-            LOG(path, ": 值不正确");
-            LOG("正确值为: ", value, " 当前值为: ", temp);
         }
+        LOG(path, ": 值不正确");
+        LOG("正确值为: ", value, " 当前值为: ", temp);
     }
     // check done
 }
+
+#endif

@@ -1,35 +1,41 @@
+#ifndef FUNCTION_H
+#define FUNCTION_H
+
 #pragma once
+
+#include <iostream>
+
 #include "GameList.h"
 #include "Path.h"
-#include <vector>
-bool CheckArg(int &argc);
-bool AutoNode(FeasPath &feaspath);
-std::string FindPerfmgrName(std::string dir, std::string str, std::string reduceStr);
-void mk_node(std::string name, struct FeasPath *p);
+
+auto CheckArg(int &argc) -> bool;
+auto AutoNode(FeasPath &feaspath) -> bool;
+auto FindPerfmgrName(const std::string &dir, const std::string &str, const std::string &reduceStr) -> std::string;
+void mk_node(const std::string &name, struct FeasPath *p);
 void init_FeasNode();
 // 记录时间
-std::string printCurrentTime();
+auto printCurrentTime() -> std::string;
 void set_middle_big_gov(std::string &gov);
 // 内置节点
-bool write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathProfile);
-std::string auto_define();
+auto write_struct(std::string switch_ctrl, struct FeasPath *p, const char *pathProfile) -> bool;
+auto auto_define() -> std::string;
 
 // readFile
-bool readProfile(const char *profile, std::vector<listGame> &profit, std::string &middle_big_core_in_game,
-                 std::string &little_core_gov);
-bool readPathProfile(const char *pathProfile, struct FeasPath *p);
+auto readProfile(const char *profile, std::vector<listGame> &profit, std::string &middle_big_core_in_game,
+                 std::string &little_core_gov) -> bool;
+auto readPathProfile(const char *pathProfile, struct FeasPath *p) -> bool;
 auto Testfile(const char *location);
-bool Get1To2(std::string input, std::string output);
+auto Get1To2(const std::string &input, const std::string &output) -> bool;
 // 检查
-bool check_path(const struct FeasPath *p);
+auto check_path(const struct FeasPath *p) -> bool;
 // get TaAPP name
-std::string execCmdSync(std::string command, const std::vector<std::string> &args);
-std::string getTopApp();
-std::string getTopAppShell();
-std::string checkSymbol(std::string &name);
+auto execCmdSync(std::string command, const std::vector<std::string> &args) -> std::string;
+auto getTopApp() -> std::string;
+auto getTopAppShell() -> std::string;
+auto checkSymbol(std::string &name) -> std::string;
 // running
-bool matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
-                    std::string &gov, std::string &now_package);
+auto matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
+                    std::string &gov, std::string &now_package) -> bool;
 void matchingThread(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package);
 
@@ -62,3 +68,5 @@ template <typename... Args> static void LOG2(const Args &...args) {
     std::cout << std::endl;
 }
 */
+
+#endif

@@ -1,16 +1,20 @@
+#ifndef LOCKVALUE_H
+#define LOCKVALUE_H
+
 #pragma once
+
 #include <fstream>
 #include <iostream>
-#include <sstream>
 #include <string>
-#include <sys/mount.h>
 #include <sys/stat.h>
 #include <unistd.h>
+
 template <typename T>
 static void lock_val(T value, const std::string &path) {
     const char *TmpPath = path.c_str();
-    if (access(TmpPath, F_OK) == -1)
+    if (access(TmpPath, F_OK) == -1) {
         return;
+    }
 
     // umount(TmpPath);
 
@@ -42,3 +46,5 @@ static void lock_val(T value, const std::string &path) {
 
     chmod(TmpPath, 0555);
 }
+
+#endif

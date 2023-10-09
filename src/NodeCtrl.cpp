@@ -54,17 +54,16 @@ void recover_freq() {
         Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
     }
 }
-bool AutoNode(FeasPath &feaspath) {
+auto AutoNode(FeasPath &feaspath) -> bool {
     if (!check_path(&feaspath)) {
         mk_node(FindPerfmgrName("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
         if (!check_path(&feaspath)) {
             LOG("配置文件有误，且无法自动生成节点，请修改配置文件后使用");
             LOG("进程已结束");
             return false;
-        } else {
-            LOG("自动生成节点成功");
-            return true;
         }
+        LOG("自动生成节点成功");
+        return true;
     }
     LOG("节点设置全部正确");
 

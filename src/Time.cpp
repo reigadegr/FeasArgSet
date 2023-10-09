@@ -1,18 +1,16 @@
-#include "include/function.h"
 #include <chrono>
-#include <ctime>
 #include <iomanip>
-#include <iostream>
 #include <sstream>
-#include <thread>
 
-std::string printCurrentTime() {
+#include "include/function.h"
+
+auto printCurrentTime() -> std::string {
 
     // 获取当前时间点
-    std::chrono::system_clock::time_point currentTime = std::chrono::system_clock::now();
+    std::chrono::system_clock::time_point const currentTime = std::chrono::system_clock::now();
 
     // 将时间点转换为时间结构体
-    std::time_t currentTimeT = std::chrono::system_clock::to_time_t(currentTime);
+    std::time_t const currentTimeT = std::chrono::system_clock::to_time_t(currentTime);
 
     // 将时间结构体转换为本地时间
     std::tm *currentTimeInfo = std::localtime(&currentTimeT);
