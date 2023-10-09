@@ -27,6 +27,7 @@
 *.lib
 
 # Executables
+Module/FeasArgSet
 *.exe
 *.out
 *.app
