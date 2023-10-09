@@ -28,6 +28,7 @@
 
 # Executables
 Module/FeasArgSet
+Test/FeasArgSet
 *.exe
 *.out
 *.app
