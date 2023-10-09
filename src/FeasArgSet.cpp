@@ -1,11 +1,9 @@
-#include "include/function.h"
-#include <fstream>
-#include <iostream>
-#include <memory>
-#include <thread>
+#include <vector>
 
-int main(int argc, char **argv) {
-    if (bool ArgcTrue = CheckArg(argc); !ArgcTrue) {
+#include "include/function.h"
+
+auto main(int argc, char **argv) -> int {
+    if (bool const ArgcTrue = CheckArg(argc); !ArgcTrue) {
         return 1;
     }
     const char *profile = argv[1];
@@ -16,7 +14,7 @@ int main(int argc, char **argv) {
     FeasPath feaspath;
     // 读取路径配置文件
     readPathProfile(pathProfile, &feaspath);
-    if (bool MkNodeSuccessfully = AutoNode(feaspath); !MkNodeSuccessfully) {
+    if (bool const MkNodeSuccessfully = AutoNode(feaspath); !MkNodeSuccessfully) {
         return 2;
     }
 
@@ -29,7 +27,7 @@ int main(int argc, char **argv) {
     std::vector<listGame> gamesaver;
     // std::vector<std::unique_ptr<listGame>> gamesaver;
     //  读取包名列表
-    if (bool ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov); !ReadProfile) {
+    if (bool const ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov); !ReadProfile) {
         LOG("读取文件失败，进程结束");
         return 3;
     }
@@ -39,7 +37,7 @@ int main(int argc, char **argv) {
     recover_freq();
     LOG("运行中...");
     // 记录当前包名
-    std::string now_package = "";
+    std::string now_package;
     /*
         std::thread t(matchingThread, gamesaver, std::ref(middle_big_core_in_game), std::ref(feaspath), std::ref(gov),
                       std::ref(now_package));

@@ -1,16 +1,17 @@
+#include <fstream>
+#include <sstream>
+#include <vector>
+
 #include "include/GameList.h"
 #include "include/function.h"
-#include <algorithm>
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-bool readProfile(const char *profile, std::vector<listGame> &profit, std::string &middle_big_core_in_game,
-                 std::string &global_gov) {
+
+auto readProfile(const char *profile, std::vector<listGame> &profit, std::string &middle_big_core_in_game,
+                 std::string &global_gov) -> bool {
     std::ifstream file(profile);
 
-    if (!file.is_open())
+    if (!file.is_open()) {
         return false;
+    }
 
     std::string buf;
 
@@ -43,7 +44,7 @@ bool readProfile(const char *profile, std::vector<listGame> &profit, std::string
             iss >> name >> fps >> scaling_a >> scaling_b;
             // 错误值处理
             // fps
-            int fps_int = fps;
+            int const fps_int = fps;
             if (fps_int != 60 && fps_int != 90 && fps_int != 120) {
                 int closest = std::min({std::abs(fps_int - 60), std::abs(fps_int - 90), abs(fps_int - 120)});
                 if (closest == std::abs(fps_int - 60)) {
@@ -104,23 +105,24 @@ bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
     return true;
 }
 */
-bool readPathProfile(const char *pathProfile, struct FeasPath *p) {
+auto readPathProfile(const char *pathProfile, struct FeasPath *p) -> bool {
     std::ifstream file(pathProfile);
 
-    if (!file.is_open())
+    if (!file.is_open()) {
         return false;
+    }
 
     std::string buf;
     // 定义结构体
     struct Config {
         std::string key;
         std::string *value;
-    };
+    } __attribute__((aligned(32)));
 
-    Config configs[] = {{"Feas_switch_path", &p->Feas_switch},
-                        {"Fps_Path", &p->Fps},
-                        {"Scaling_a_path", &p->scaling_a},
-                        {"Scaling_b_path", &p->scaling_b}};
+    Config const configs[] = {{"Feas_switch_path", &p->Feas_switch},
+                              {"Fps_Path", &p->Fps},
+                              {"Scaling_a_path", &p->scaling_a},
+                              {"Scaling_b_path", &p->scaling_b}};
 
     while (std::getline(file, buf)) {
         if (!buf.empty() && buf[0] != '#') {

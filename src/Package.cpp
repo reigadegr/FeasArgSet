@@ -1,9 +1,9 @@
-#include "include/function.h"
-#include <filesystem>
 #include <fstream>
-#include <iostream>
 #include <unistd.h>
 #include <vector>
+
+#include "include/function.h"
+
 #if 0
     基于shadow3aaa的版本，微调
     使用说明：直接接收getTopApp()函数的返回值即可获取包名
@@ -30,7 +30,7 @@ std::string execCmdSync(const std::string &command, const std::vector<std::strin
     return result;
 }
 */
-std::string execCmdSync(std::string command, const std::vector<std::string> &args) {
+auto execCmdSync(std::string command, const std::vector<std::string> &args) -> std::string {
     // 将命令和参数拼接为一个字符串
     for (const auto &arg : args) {
         command += " ";
@@ -38,8 +38,9 @@ std::string execCmdSync(std::string command, const std::vector<std::string> &arg
     }
     // 执行命令并获取输出
     FILE *pipe = popen(command.c_str(), "r");
-    if (!pipe)
+    if (pipe == nullptr) {
         return {};
+    }
     char buffer[2];
     std::string result;
     while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
@@ -50,9 +51,10 @@ std::string execCmdSync(std::string command, const std::vector<std::string> &arg
 }
 
 auto Testfile(const char *location) { return access(location, F_OK) == 0; }
-std::string getTopApp() {
+auto getTopApp() -> std::string {
     if (Testfile("/sys/kernel/gbe/gbe2_fg_pid")) {
-        std::string pid, name;
+        std::string pid;
+        std::string name;
         std::ifstream f_pid("/sys/kernel/gbe/gbe2_fg_pid");
         if (!f_pid.is_open()) {
             return getTopAppShell();
@@ -75,7 +77,7 @@ std::string getTopApp() {
     return getTopAppShell();
 }
 
-std::string getTopAppShell() {
+auto getTopAppShell() -> std::string {
     std::string name;
     const std::string str = execCmdSync("/system/bin/dumpsys", {"window", "visible-apps"});
 
@@ -83,17 +85,15 @@ std::string getTopAppShell() {
 
     name = str.substr(pkgPos, str.find(' ', pkgPos) - pkgPos - 0);
 
-    const auto first = name.find_first_not_of(" ");
-    const auto last = name.find_last_not_of(" ");
+    const auto first = name.find_first_not_of(' ');
+    const auto last = name.find_last_not_of(' ');
     name = name.substr(first, last - first + 1);
 
     return checkSymbol(name);
 }
 
-std::string checkSymbol(std::string &name) {
-    if (name.find(":") != std::string::npos) {
-        // 获取冒号的位置
-        unsigned int colonPos = name.find(':');
+auto checkSymbol(std::string &name) -> std::string {
+    if (auto colonPos = name.find(':'); colonPos != std::string::npos) {
         // 截取冒号前边的部分
         name = name.substr(0, colonPos);
     }

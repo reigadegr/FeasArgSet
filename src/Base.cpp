@@ -1,14 +1,17 @@
-#include "include/LockValue.h"
-#include "include/function.h"
-#include <fstream>
 #include <sstream>
 #include <thread>
+#include <vector>
+
+#include "include/LockValue.h"
+#include "include/function.h"
+
 // 把第一个节点的值写到另一个节点(lock_val方法)
-bool Get1To2(std::string input, std::string output) {
+auto Get1To2(const std::string &input, const std::string &output) -> bool {
     std::ifstream input_path(input);
 
-    if (!input_path.is_open())
+    if (!input_path.is_open()) {
         return false;
+    }
 
     std::string value;
     input_path >> value;
@@ -37,9 +40,9 @@ void debugnode() {
     system("cat /sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
     system("echo \"---------------------------------\"");
 }
-bool matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
-                    std::string &gov, std::string &now_package) {
-    std::string TopApp = getTopApp();
+auto matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
+                    std::string &gov, std::string &now_package) -> bool {
+    std::string const TopApp = getTopApp();
     // LOG("前台包名: ",TopApp);
 
     // 包名与上次相同则直接返回，降低开销
@@ -86,9 +89,9 @@ void matchingThread(std::vector<listGame> &gamesaver, std::string &middle_big_co
     }
 }
 
-bool check_path(const struct FeasPath *p) {
+auto check_path(const struct FeasPath *p) -> bool {
     // check path
-    std::vector<std::string> nodes = {p->Feas_switch, p->Fps};
+    std::vector<std::string> const nodes = {p->Feas_switch, p->Fps};
     for (const auto &node : nodes) {
         if (access(node.c_str(), F_OK) == -1) {
             LOG("你设置的节点: ", node, "不存在");
@@ -99,10 +102,11 @@ bool check_path(const struct FeasPath *p) {
     return true;
 }
 
-bool CheckArg(int &argc) {
+auto CheckArg(int &argc) -> bool {
     if (argc == 3) {
         return true;
-    } else if (argc < 3) {
+    }
+    if (argc < 3) {
         LOG("命令行参数个数有误，需要有", 3, "个\n", "当前为: ", argc, "个");
         return false;
     } else if (argc > 3) {
