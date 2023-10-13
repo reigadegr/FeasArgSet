@@ -42,9 +42,17 @@ void mk_node(const std::string &name, struct FeasPath *p) {
     p->Fps = "/sys/module/" + name + "/parameters/fixed_target_fps";
     p->scaling_a = "/sys/module/" + name + "/parameters/scaling_a";
     p->scaling_b = "/sys/module/" + name + "/parameters/scaling_b";
+
+    p->normal_frame_keep_count = "/sys/module/" + name + "/parameters/normal_frame_keep_count";
+    p->min_freq_limit_level = "/sys/module/" + name + "/parameters/min_freq_limit_level";
+    p->max_freq_limit_level = "/sys/module/" + name + "/parameters/max_freq_limit_level";
+
     LOG("以下是你的节点: ");
     LOG(p->Feas_switch);
     LOG(p->Fps);
     LOG(p->scaling_a);
     LOG(p->scaling_b);
+    LOG(p->normal_frame_keep_count);
+    LOG(p->min_freq_limit_level);
+    LOG(p->max_freq_limit_level);
 }

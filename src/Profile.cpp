@@ -94,7 +94,7 @@ auto readPathProfile(const char *pathProfile, struct FeasPath *p) -> bool {
                               {"Fps_Path", &p->Fps, "目标fps节点"},
                               {"Scaling_a_path", &p->scaling_a, "scaling_a节点"},
                               {"Scaling_b_path", &p->scaling_b, "scaling_b节点"},
-                              {"normal_frame_keep_count", &p->normal_frame_keep_count, "normal_frame_keep_count节点: "},
+                              {"normal_frame_keep_count", &p->normal_frame_keep_count, "normal_frame_keep_count节点"},
                               {"min_freq_limit_level", &p->min_freq_limit_level, "最小频率等级"},
                               {"max_freq_limit_level", &p->max_freq_limit_level, "最大频率等级"}
 
