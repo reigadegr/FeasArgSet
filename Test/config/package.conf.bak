@@ -6,7 +6,7 @@
 com.hypergryph.arknights 60 280 -40 8 0 41
 com.miHoYo.Yuanshen 60 400 -50  8 0 41
 com.miHoYo.hkrpg 60 280 -40  8 0 41
-com.tencent.tmgp.speedmobile 120 280 -40  8 0 42
+com.tencent.tmgp.speedmobile 120 280 -40  8 0 41
 com.tencent.tmgp.sgame 120 400 -50  8 0 41
 #com.omarea.vtools 60 250 0  8 0 41
 #'$'开头的是设置游戏中CPU中大核使用的调速器
