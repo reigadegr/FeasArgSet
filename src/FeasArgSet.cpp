@@ -25,7 +25,6 @@ auto main(int argc, char **argv) -> int {
     std::string gov = "schedutil";
     // 创建结构体动态数组
     std::vector<listGame> gamesaver;
-    // std::vector<std::unique_ptr<listGame>> gamesaver;
     //  读取包名列表
     if (bool const ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov); !ReadProfile) {
         LOG("读取文件失败，进程结束");
