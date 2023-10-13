@@ -37,7 +37,7 @@ auto main(int argc, char **argv) -> int {
     recover_freq();
     LOG("运行中...");
     // 记录当前包名
-    std::string now_package;
+    std::string now_package = "";
     /*
         std::thread t(matchingThread, gamesaver, std::ref(middle_big_core_in_game), std::ref(feaspath), std::ref(gov),
                       std::ref(now_package));

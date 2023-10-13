@@ -1,8 +1,6 @@
 #ifndef CHECK_H
 #define CHECK_H
 
-#pragma once
-
 #include <fstream>
 #include <unistd.h>
 

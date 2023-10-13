@@ -1,8 +1,6 @@
 #ifndef LOCKVALUE_H
 #define LOCKVALUE_H
 
-#pragma once
-
 #include <fstream>
 #include <iostream>
 #include <string>

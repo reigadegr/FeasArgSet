@@ -1,7 +1,6 @@
 #ifndef PATH_H
 #define PATH_H
 
-#pragma once
 #include "function.h"
 struct FeasPath {
 public:
