@@ -27,20 +27,14 @@ compile_start() {
 	echo "开始编译，大概10秒完成"
 	# this common from user : shadow3aaa
 	/data/data/com.termux/files/usr/bin/aarch64-linux-android-clang++ \
-    -finline-functions \
     -Wall -fomit-frame-pointer -std=c++2b -stdlib=libc++ -Os -flto \
     -fno-rtti -fvisibility=hidden -static-libgcc -static-libstdc++ \
     -fshort-enums -fmerge-all-constants -fno-exceptions \
-    -fuse-ld=lld -mtune=native -march=native -flto -pthread \
+    -fuse-ld=lld -mtune=native -march=native -pthread \
     -Bsymbolic -fdata-sections -ffunction-sections -fno-stack-protector \
     -Wl,-O3,--lto-O3,--gc-sections,--as-needed,--icf=all,-z,norelro,--pack-dyn-relocs=android+relr,-x,-s \
-    -Wall -std=c++2b -stdlib=libc++ -flto \
-	-fomit-frame-pointer -mtune=native -march=native \
-	-fno-rtti -fvisibility=hidden -static-libstdc++ \
-	-fshort-enums -fmerge-all-constants -fno-exceptions -fuse-ld=lld \
-	-Bsymbolic -fdata-sections -ffunction-sections -fno-stack-protector \
-	-Wl,-O3,--lto-O3,--gc-sections,--as-needed,--icf=all,-z,norelro,--pack-dyn-relocs=android+relr,-x,-s \
-	$project_root/src/*.cpp -o $output && echo "*编译完成*" || exit 1
+    $project_root/src/*.cpp -o $output && echo "*编译完成*" || exit 1
+
 	/data/data/com.termux/files/usr/bin/strip $output
 	# upx -9 project_root/FeasArgSet
 
