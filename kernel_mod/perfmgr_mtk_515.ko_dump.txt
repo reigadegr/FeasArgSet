@@ -1,0 +1,8 @@
+parmtype:       fixed_target_fps:int
+parmtype:       target_fps_48:int
+parmtype:       t_fps_49:int
+parmtype:       target_fps_60:int
+parmtype:       target_fps_90:int
+parmtype:       target_fps_120:int
+parmtype:       boost_minfreq:bool
+parmtype:       powersave:bool

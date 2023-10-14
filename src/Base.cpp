@@ -36,8 +36,8 @@ void debugnode() {
     system("cat /sys/module/mtk_fpsgo/parameters/scaling_a");
     system("cat /sys/module/mtk_fpsgo/parameters/scaling_b");
     system("cat /sys/module/mtk_fpsgo/parameters/normal_frame_keep_count");
-    system("/sys/module/mtk_fpsgo/parameters/min_freq_limit_level");
-    system("/sys/module/mtk_fpsgo/parameters/max_freq_limit_level");
+    system("cat /sys/module/mtk_fpsgo/parameters/min_freq_limit_level");
+    system("cat /sys/module/mtk_fpsgo/parameters/max_freq_limit_level");
     system("ls -al /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq");
     // gov
     system("cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor");

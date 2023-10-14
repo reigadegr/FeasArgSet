@@ -1,7 +1,10 @@
 20231014更新:
-增加更多节点，normal_frame_keep_count
+增加更多节点: 
+normal_frame_keep_count
 min_freq_limit_level
 max_freq_limit_level
+强烈建议修改原版配置文件
+
 20230901更新: 
 增加自动生成节点功能
 
