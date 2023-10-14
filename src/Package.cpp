@@ -9,27 +9,7 @@
     使用说明：直接接收getTopApp()函数的返回值即可获取包名
     例如：std::string TopApp = getTopApp();
 #endif
-/*
-std::string execCmdSync(const std::string &command, const std::vector<std::string> &args) {
-    // 将命令和参数拼接为一个字符串
-    std::string cmdStr = command;
-    for (const auto &arg : args) {
-        cmdStr += " ";
-        cmdStr += arg;
-    }
-    // 执行命令并获取输出
-    FILE *pipe = popen(cmdStr.c_str(), "r");
-    if (!pipe)
-        return {};
-    char buffer[256];
-    std::string result;
-    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
-        result += buffer;
-    }
-    pclose(pipe);
-    return result;
-}
-*/
+
 auto execCmdSync(std::string command, const std::vector<std::string> &args) -> std::string {
     // 将命令和参数拼接为一个字符串
     for (const auto &arg : args) {

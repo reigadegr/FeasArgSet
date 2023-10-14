@@ -35,6 +35,7 @@ void debugnode() {
     system("cat /sys/module/mtk_fpsgo/parameters/scaling_a");
     system("cat /sys/module/mtk_fpsgo/parameters/scaling_b");
     system("ls -al /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq");
+    // gov
     system("cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor");
     system("cat /sys/devices/system/cpu/cpufreq/policy4/scaling_governor");
     system("cat /sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
@@ -43,9 +44,8 @@ void debugnode() {
 auto matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) -> bool {
     std::string const TopApp = getTopApp();
-    // LOG("前台包名: ",TopApp);
 
-    // 包名与上次相同则直接返回，降低开销
+    // 包名与上次相同则直接返回
     if (TopApp == now_package) {
         return true;
     }
@@ -62,6 +62,7 @@ auto matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_co
             Feas_on(&game, &feaspath);
 
             set_middle_big_gov(middle_big_core_in_game);
+            // 解锁scaling_max_freq权限
             Allow_system_operation();
             // 调试debug
             // debugnode();

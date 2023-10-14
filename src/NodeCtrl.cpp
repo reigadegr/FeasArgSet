@@ -2,11 +2,30 @@
 #include "include/LockValue.h"
 #include "include/NodePermission.h"
 #include "include/function.h"
+
+#if 0
+struct FeasPath {
+public:
+    std::string Feas_switch;
+    std::string Fps;
+    std::string scaling_a;
+    std::string scaling_b;
+    std::string normal_frame_keep_count;
+    std::string min_freq_limit_level;
+    std::string max_freq_limit_level;
+} __attribute__((aligned(128)));
+
+#endif
+
 void Feas_on(const struct listGame *o, const struct FeasPath *p) {
     lock_val(1, p->Feas_switch);
     lock_val(o->fixed_target_fps, p->Fps);
     lock_val(o->scaling_a, p->scaling_a);
     lock_val(o->scaling_b, p->scaling_b);
+    lock_val(o->normal_frame_keep_count, p->normal_frame_keep_count);
+    lock_val(o->min_freq_limit_level, p->min_freq_limit_level);
+
+    lock_val(o->max_freq_limit_level, p->max_freq_limit_level);
 }
 
 void Feas_off(const struct FeasPath *p) {
