@@ -1,8 +1,8 @@
 #include "include/Check.h"
 #include "include/LockValue.h"
 #include "include/NodePermission.h"
+#include "include/UnLockValue.hpp"
 #include "include/function.h"
-
 #if 0
 struct FeasPath {
 public:
@@ -16,7 +16,7 @@ public:
 } __attribute__((aligned(128)));
 
 #endif
-
+// 进入游戏，锁定节点值
 void Feas_on(const struct listGame *o, const struct FeasPath *p) {
     lock_val(1, p->Feas_switch);
     lock_val(o->fixed_target_fps, p->Fps);
@@ -24,22 +24,18 @@ void Feas_on(const struct listGame *o, const struct FeasPath *p) {
     lock_val(o->scaling_b, p->scaling_b);
     lock_val(o->normal_frame_keep_count, p->normal_frame_keep_count);
     lock_val(o->min_freq_limit_level, p->min_freq_limit_level);
-
     lock_val(o->max_freq_limit_level, p->max_freq_limit_level);
 }
 
 void Feas_off(const struct FeasPath *p) {
-    // 退出游戏，恢复节点值
-    lock_val(0, p->Feas_switch);
-    lock_val(-1, p->Fps);
-    lock_val(0, p->scaling_a);
-    lock_val(0, p->scaling_b);
-
-    // 退出游戏，解锁feas节点权限
-    Permission_unlock(p->Feas_switch);
-    Permission_unlock(p->Fps);
-    Permission_unlock(p->scaling_a);
-    Permission_unlock(p->scaling_b);
+    // 退出游戏，恢复节点值，解锁feas节点权限
+    UnLock_val(0, p->Feas_switch);
+    UnLock_val(-1, p->Fps);
+    UnLock_val(0, p->scaling_a);
+    UnLock_val(0, p->scaling_b);
+    UnLock_val(0, p->normal_frame_keep_count);
+    UnLock_val(0, p->min_freq_limit_level);
+    UnLock_val(0, p->max_freq_limit_level);
 }
 void Allow_system_operation() {
     // 进入游戏，解锁scaling_max_freq节点权限
