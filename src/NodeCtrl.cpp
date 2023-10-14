@@ -40,38 +40,50 @@ void Feas_off(const struct FeasPath *p) {
 void Allow_system_operation() {
     // 进入游戏，解锁scaling_max_freq节点权限
     for (int i = 0; i < 8; i++) {
-        Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
+        Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" +
+                          std::to_string(i) + "/scaling_max_freq");
     }
 }
 
 void set_gov(std::string &gov) {
     for (int i = 0; i < 8; i++) {
-        lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
-        check_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
+        lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" +
+                          std::to_string(i) + "/scaling_governor");
+        check_val(gov, "/sys/devices/system/cpu/cpufreq/policy" +
+                           std::to_string(i) + "/scaling_governor");
     }
 }
 
 void set_middle_big_gov(std::string &gov) {
     // 设置游戏中中大核调速器
     for (int i = 1; i < 8; i++) {
-        lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
-        check_val(gov, "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_governor");
+        lock_val(gov, "/sys/devices/system/cpu/cpufreq/policy" +
+                          std::to_string(i) + "/scaling_governor");
+        check_val(gov, "/sys/devices/system/cpu/cpufreq/policy" +
+                           std::to_string(i) + "/scaling_governor");
     }
 }
 
-// Recover the scaling_max_freq and scaling_min_freq from cpu_info_max_freq and cpu_info_min_freq
+// Recover the scaling_max_freq and scaling_min_freq from cpu_info_max_freq and
+// cpu_info_min_freq
 void recover_freq() {
     for (int i = 0; i < 8; i++) {
-        Get1To2("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/cpuinfo_max_freq",
-                "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
-        Get1To2("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/cpuinfo_min_freq",
-                "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_min_freq");
-        Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) + "/scaling_max_freq");
+        Get1To2("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) +
+                    "/cpuinfo_max_freq",
+                "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) +
+                    "/scaling_max_freq");
+        Get1To2("/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) +
+                    "/cpuinfo_min_freq",
+                "/sys/devices/system/cpu/cpufreq/policy" + std::to_string(i) +
+                    "/scaling_min_freq");
+        Permission_unlock("/sys/devices/system/cpu/cpufreq/policy" +
+                          std::to_string(i) + "/scaling_max_freq");
     }
 }
 auto AutoNode(FeasPath &feaspath) -> bool {
     if (!check_path(&feaspath)) {
-        mk_node(FindPerfmgrName("/sys/module", "perfmgr_enable", "/parameters"), &feaspath);
+        mk_node(FindPerfmgrName("/sys/module", "perfmgr_enable", "/parameters"),
+                &feaspath);
         if (!check_path(&feaspath)) {
             LOG("配置文件有误，且无法自动生成节点，请修改配置文件后使用");
             LOG("进程已结束");

@@ -10,7 +10,8 @@
     例如：std::string TopApp = getTopApp();
 #endif
 
-auto execCmdSync(std::string command, const std::vector<std::string> &args) -> std::string {
+auto execCmdSync(std::string command, const std::vector<std::string> &args)
+    -> std::string {
     // 将命令和参数拼接为一个字符串
     for (const auto &arg : args) {
         command += " ";
@@ -59,7 +60,8 @@ auto getTopApp() -> std::string {
 
 auto getTopAppShell() -> std::string {
     std::string name;
-    const std::string str = execCmdSync("/system/bin/dumpsys", {"window", "visible-apps"});
+    const std::string str =
+        execCmdSync("/system/bin/dumpsys", {"window", "visible-apps"});
 
     const auto pkgPos = str.find("package=") + 8;
 

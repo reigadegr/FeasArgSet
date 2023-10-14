@@ -30,10 +30,14 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
 }
 void debugnode() {
     system("cat /sys/module/mtk_fpsgo/parameters/perfmgr_enable");
-    system("echo -n \"xiaomiFeas_fps: \" && cat /sys/module/mtk_fpsgo/parameters/fixed_target_fps");
+    system("echo -n \"xiaomiFeas_fps: \" && cat "
+           "/sys/module/mtk_fpsgo/parameters/fixed_target_fps");
 
     system("cat /sys/module/mtk_fpsgo/parameters/scaling_a");
     system("cat /sys/module/mtk_fpsgo/parameters/scaling_b");
+    system("cat /sys/module/mtk_fpsgo/parameters/normal_frame_keep_count");
+    system("/sys/module/mtk_fpsgo/parameters/min_freq_limit_level");
+    system("/sys/module/mtk_fpsgo/parameters/max_freq_limit_level");
     system("ls -al /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq");
     // gov
     system("cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor");
@@ -41,7 +45,8 @@ void debugnode() {
     system("cat /sys/devices/system/cpu/cpufreq/policy7/scaling_governor");
     system("echo \"---------------------------------\"");
 }
-auto matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
+auto matching_start(std::vector<listGame> &gamesaver,
+                    std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) -> bool {
     std::string const TopApp = getTopApp();
 
@@ -82,10 +87,12 @@ auto matching_start(std::vector<listGame> &gamesaver, std::string &middle_big_co
     return true;
 }
 
-void matchingThread(std::vector<listGame> &gamesaver, std::string &middle_big_core_in_game, FeasPath &feaspath,
+void matchingThread(std::vector<listGame> &gamesaver,
+                    std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) {
     while (true) {
-        matching_start(gamesaver, middle_big_core_in_game, feaspath, gov, now_package);
+        matching_start(gamesaver, middle_big_core_in_game, feaspath, gov,
+                       now_package);
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }

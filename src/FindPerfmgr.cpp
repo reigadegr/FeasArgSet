@@ -1,14 +1,17 @@
 #include "include/function.h"
 #include <filesystem>
 //  参数分别为: 目录名，目标文件名，裁剪的字符串
-auto FindPerfmgrName(const std::string &dir, const std::string &str, const std::string &reduceStr) -> std::string {
+auto FindPerfmgrName(const std::string &dir, const std::string &str,
+                     const std::string &reduceStr) -> std::string {
     LOG("开始查找节点");
-    for (const auto &entry : std::filesystem::recursive_directory_iterator(dir)) {
+    for (const auto &entry :
+         std::filesystem::recursive_directory_iterator(dir)) {
         std::string const path = entry.path().string();
 
         if (path.find(str) != std::string::npos) {
             //$1: 起始位置; $2: 裁剪的长度
-            std::string PerfmgrName = path.substr(dir.size() + 1, path.find(reduceStr) - dir.size() - 1);
+            std::string PerfmgrName = path.substr(
+                dir.size() + 1, path.find(reduceStr) - dir.size() - 1);
             LOG(PerfmgrName);
             LOG("查找成功");
             return PerfmgrName;
@@ -43,9 +46,12 @@ void mk_node(const std::string &name, struct FeasPath *p) {
     p->scaling_a = "/sys/module/" + name + "/parameters/scaling_a";
     p->scaling_b = "/sys/module/" + name + "/parameters/scaling_b";
 
-    p->normal_frame_keep_count = "/sys/module/" + name + "/parameters/normal_frame_keep_count";
-    p->min_freq_limit_level = "/sys/module/" + name + "/parameters/min_freq_limit_level";
-    p->max_freq_limit_level = "/sys/module/" + name + "/parameters/max_freq_limit_level";
+    p->normal_frame_keep_count =
+        "/sys/module/" + name + "/parameters/normal_frame_keep_count";
+    p->min_freq_limit_level =
+        "/sys/module/" + name + "/parameters/min_freq_limit_level";
+    p->max_freq_limit_level =
+        "/sys/module/" + name + "/parameters/max_freq_limit_level";
 
     LOG("以下是你的节点: ");
     LOG(p->Feas_switch);

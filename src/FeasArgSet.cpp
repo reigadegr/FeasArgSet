@@ -14,7 +14,8 @@ auto main(int argc, char **argv) -> int {
     FeasPath feaspath;
     // 读取路径配置文件
     readPathProfile(pathProfile, &feaspath);
-    if (bool const MkNodeSuccessfully = AutoNode(feaspath); !MkNodeSuccessfully) {
+    if (bool const MkNodeSuccessfully = AutoNode(feaspath);
+        !MkNodeSuccessfully) {
         return 2;
     }
 
@@ -26,7 +27,9 @@ auto main(int argc, char **argv) -> int {
     // 创建结构体动态数组
     std::vector<listGame> gamesaver;
     //  读取包名列表
-    if (bool const ReadProfile = readProfile(profile, gamesaver, middle_big_core_in_game, gov); !ReadProfile) {
+    if (bool const ReadProfile =
+            readProfile(profile, gamesaver, middle_big_core_in_game, gov);
+        !ReadProfile) {
         LOG("读取文件失败，进程结束");
         return 3;
     }
@@ -38,11 +41,13 @@ auto main(int argc, char **argv) -> int {
     // 记录当前包名
     std::string now_package = "";
     /*
-        std::thread t(matchingThread, gamesaver, std::ref(middle_big_core_in_game), std::ref(feaspath), std::ref(gov),
+        std::thread t(matchingThread, gamesaver,
+       std::ref(middle_big_core_in_game), std::ref(feaspath), std::ref(gov),
                       std::ref(now_package));
 
         t.join();
     */
     // 开始运行
-    matchingThread(gamesaver, middle_big_core_in_game, feaspath, gov, now_package);
+    matchingThread(gamesaver, middle_big_core_in_game, feaspath, gov,
+                   now_package);
 }
