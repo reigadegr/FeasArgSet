@@ -1,8 +1,8 @@
+#include "include/function.h"
 #include <fstream>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <vector>
-
-#include "include/function.h"
 
 #if 0
     基于shadow3aaa的版本，微调
@@ -38,6 +38,7 @@ auto getTopApp() -> std::string {
         std::string name;
         std::ifstream f_pid("/sys/kernel/gbe/gbe2_fg_pid");
         if (!f_pid.is_open()) {
+            chmod("/sys/kernel/gbe/gbe2_fg_pid", 0666);
             return getTopAppShell();
         }
         f_pid >> pid;
@@ -46,6 +47,7 @@ auto getTopApp() -> std::string {
         std::ifstream app("/proc/" + pid + "/cmdline");
 
         if (!app.is_open()) {
+            chmod(("/proc/" + pid + "/cmdline").c_str(), 0666);
             return getTopAppShell();
         }
 

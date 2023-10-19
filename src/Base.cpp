@@ -82,8 +82,9 @@ auto matching_start(std::vector<listGame> &gamesaver,
     LOG("检测到非列表应用: ", TopApp, "\n");
     Feas_off(&feaspath);
 
-    recover_freq();
     set_gov(gov);
+    recover_freq();
+
     // 调试debug
     // debugnode();
     return true;
