@@ -18,7 +18,14 @@ format_code() {
 		/data/data/com.termux/files/usr/bin/clang-format -i $i
 	done
 }
-
+compile_line(){
+    rm $output
+    nohup /data/data/com.termux/files/usr/bin/aarch64-linux-android-clang++ \
+    -Wall -fomit-frame-pointer -std=c++2b -stdlib=libc++ \
+    -fno-rtti -fvisibility=hidden \
+    -pthread \
+    $project_root/src/*.cpp -o $output >/dev/null 2>&1 &
+}
 compile_start() {
     local output=$project_root/Module/FeasArgSet
     local for_test=$project_root/Test/FeasArgSet
@@ -26,12 +33,12 @@ compile_start() {
 	echo "当前时间：$(date +%Y) 年 $(date +%m) 月 $(date +%d) 日 $(date +%H) 时 $(date +%M) 分 $(date +%S) 秒"
 	echo "开始编译，大概10秒完成"
 	# this common from user : shadow3aaa
-	/data/data/com.termux/files/usr/bin/aarch64-linux-android-clang++ \
-    -Wall -fomit-frame-pointer -std=c++2b -stdlib=libc++ \
-    -fno-rtti -fvisibility=hidden \
-    -pthread \
-    $project_root/src/*.cpp -o $output && echo "*编译完成*" || exit 1
-
+	compile_line && echo "*编译完成*" || exit 1
+    until [ -f $output ]; do
+        ps -ef | grep clang | grep -v grep | awk '{print $4}'
+        echo '\n'
+        sleep 0.5
+    done
 	/data/data/com.termux/files/usr/bin/strip $output
 	# upx -9 project_root/FeasArgSet
 

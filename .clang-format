@@ -5,4 +5,4 @@ AccessModifierOffset: -4
 IndentCaseLabels: true
 AlwaysBreakTemplateDeclarations: Yes
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
-#ColumnLimit: 120
+#ColumnLimit: 10

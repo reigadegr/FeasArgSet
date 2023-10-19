@@ -29,7 +29,9 @@ auto Testfile(const char *location);
 auto Get1To2(const std::string &input, const std::string &output) -> bool;
 // 检查
 auto check_path(const struct FeasPath *p) -> bool;
-// get TaAPP name
+// get
+// TaAPP
+// name
 auto execCmdSync(std::string command, const std::vector<std::string> &args)
     -> std::string;
 auto getTopApp() -> std::string;
@@ -49,7 +51,16 @@ void recover_freq();
 void GetSecondArg(std::string &buf, std::string &secondArg);
 
 void Feas_off(const struct FeasPath *p);
-// void Feas_on(unsigned int fps, int scaling_a, int scaling_b, struct FeasPath
+// void
+// Feas_on(unsigned
+// int
+// fps,
+// int
+// scaling_a,
+// int
+// scaling_b,
+// struct
+// FeasPath
 // *p);
 void Feas_on(const struct listGame *o, const struct FeasPath *p);
 void Allow_system_operation();
@@ -64,13 +75,37 @@ static void LOG(const Args &...args) {
 }
 // 备用打印函数，debug用
 /*
-template <typename... Args> static void LOG2(const Args &...args);
-template <typename... Args> static void LOG2(const Args &...args) {
-    const auto printArg = [&](const auto &arg) {
-        std::cout << arg << std::endl;
+template
+<typename...
+Args>
+static
+void
+LOG2(const
+Args
+&...args);
+template
+<typename...
+Args>
+static
+void
+LOG2(const
+Args
+&...args)
+{ const
+auto
+printArg =
+[&](const
+auto &arg)
+{
+        std::cout
+<< arg <<
+std::endl;
     };
-    (printArg(args), ...);
-    std::cout << std::endl;
+    (printArg(args),
+...);
+    std::cout
+<<
+std::endl;
 }
 */
 

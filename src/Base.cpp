@@ -26,7 +26,9 @@ void GetSecondArg(std::string &buf, std::string &secondArg) {
     std::istringstream iss(buf);
     std::string tmp;
     iss >> tmp >> secondArg;
-    // LOG(tmp," : ",secondArg);
+    // LOG(tmp,"
+    // :
+    // ",secondArg);
 }
 void debugnode() {
     system("cat /sys/module/mtk_fpsgo/parameters/perfmgr_enable");
@@ -98,7 +100,8 @@ void matchingThread(std::vector<listGame> &gamesaver,
 }
 
 auto check_path(const struct FeasPath *p) -> bool {
-    // check path
+    // check
+    // path
     std::vector<std::string> const nodes = {p->Feas_switch, p->Fps};
     for (const auto &node : nodes) {
         if (access(node.c_str(), F_OK) == -1) {
@@ -106,7 +109,8 @@ auto check_path(const struct FeasPath *p) -> bool {
             return false;
         }
     }
-    // check down
+    // check
+    // down
     return true;
 }
 

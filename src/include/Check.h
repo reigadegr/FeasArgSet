@@ -15,7 +15,8 @@ static void check_val(T value, const std::string &path) {
 
     // umount(path.c_str());
 
-    // check value
+    // check
+    // value
     std::ifstream test(path);
     if (test.is_open()) {
         T temp;
@@ -28,7 +29,8 @@ static void check_val(T value, const std::string &path) {
         LOG(path, ": 值不正确");
         LOG("正确值为: ", value, " 当前值为: ", temp);
     }
-    // check done
+    // check
+    // done
 }
 
 #endif

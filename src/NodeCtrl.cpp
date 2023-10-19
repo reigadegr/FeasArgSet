@@ -64,7 +64,14 @@ void set_middle_big_gov(std::string &gov) {
     }
 }
 
-// Recover the scaling_max_freq and scaling_min_freq from cpu_info_max_freq and
+// Recover
+// the
+// scaling_max_freq
+// and
+// scaling_min_freq
+// from
+// cpu_info_max_freq
+// and
 // cpu_info_min_freq
 void recover_freq() {
     for (int i = 0; i < 8; i++) {

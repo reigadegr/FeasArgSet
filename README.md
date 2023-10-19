@@ -6,10 +6,10 @@
 
 ## 编译
 ```bash
-#环境构建
+#环境构建(termux)
 pkg install clang -y && pkg add ndk-multilib -y
 #clone项目
-git clone https://github.com/reigadegr/FeasArgSet --depth 1
+git clone https://github.com/reigadegr/FeasArgSet --depth 1 -b main
 cd $(pwd)/FeasArgSet/Build
 sh build.sh
 ```
