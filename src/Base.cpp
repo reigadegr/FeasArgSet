@@ -50,6 +50,7 @@ void debugnode() {
 auto matching_start(std::vector<listGame> &gamesaver,
                     std::string &middle_big_core_in_game, FeasPath &feaspath,
                     std::string &gov, std::string &now_package) -> bool {
+    // 获取TopApp name
     std::string const TopApp = getTopApp();
 
     // 包名与上次相同则直接返回
