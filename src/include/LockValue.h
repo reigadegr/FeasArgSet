@@ -45,4 +45,20 @@ static void lock_val(T value, const std::string &path) {
     target_file.close();
 
     chmod(TmpPath, 0555);
+    // mask value
+    /*
+    const std::string mask_dir = "/data/local/tmp";
+    const std::string mount_mask_file = mask_dir + "/mount_mask_" +
+    std::to_string(value);
+
+    std::ofstream maskfile(mount_mask_file);
+    maskfile << value;
+    maskfile.close();
+
+
+    mount(mount_mask_file.c_str(), path.c_str(), "", MS_BIND, "");
+
+    remove(mount_mask_file.c_str());
+
+    */
 }
