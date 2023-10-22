@@ -1,5 +1,4 @@
-#ifndef GAMELIST_H
-#define GAMELIST_H
+#pragma once
 
 #include <string>
 
@@ -12,5 +11,3 @@ struct listGame {
     int min_freq_limit_level;
     int max_freq_limit_level;
 } __attribute__((aligned(64)));
-
-#endif

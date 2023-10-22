@@ -1,5 +1,4 @@
-#ifndef PATH_H
-#define PATH_H
+#pragma once
 
 #include "function.h"
 struct FeasPath {
@@ -12,5 +11,3 @@ public:
     std::string min_freq_limit_level;
     std::string max_freq_limit_level;
 } __attribute__((aligned(128)));
-
-#endif

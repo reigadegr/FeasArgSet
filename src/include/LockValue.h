@@ -1,5 +1,4 @@
-#ifndef LOCKVALUE_H
-#define LOCKVALUE_H
+#pragma once
 
 #include <fstream>
 #include <iostream>
@@ -31,9 +30,7 @@ static void lock_val(T value, const std::string &path) {
     // check
     // done
 
-    // chown(TmpPath,
-    // 0,
-    // 0);
+    // chown(TmpPath,0,0);
     chmod(TmpPath, 0666);
     // target_file:path
     // 对象
@@ -49,5 +46,3 @@ static void lock_val(T value, const std::string &path) {
 
     chmod(TmpPath, 0555);
 }
-
-#endif

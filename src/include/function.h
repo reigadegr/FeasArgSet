@@ -1,6 +1,4 @@
-#ifndef FUNCTION_H
-#define FUNCTION_H
-
+#pragma once
 #include <iostream>
 
 #include "GameList.h"
@@ -73,40 +71,3 @@ static void LOG(const Args &...args) {
     (printArg(args), ...);
     std::cout << std::endl;
 }
-// 备用打印函数，debug用
-/*
-template
-<typename...
-Args>
-static
-void
-LOG2(const
-Args
-&...args);
-template
-<typename...
-Args>
-static
-void
-LOG2(const
-Args
-&...args)
-{ const
-auto
-printArg =
-[&](const
-auto &arg)
-{
-        std::cout
-<< arg <<
-std::endl;
-    };
-    (printArg(args),
-...);
-    std::cout
-<<
-std::endl;
-}
-*/
-
-#endif

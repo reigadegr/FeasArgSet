@@ -1,5 +1,4 @@
-#ifndef NODEPERMISSION_H
-#define NODEPERMISSION_H
+#pragma once
 
 static void Permission_unlock(const std::string &path) {
 
@@ -9,5 +8,3 @@ static void Permission_unlock(const std::string &path) {
 
     chmod(path.c_str(), 0666);
 }
-
-#endif
