@@ -2,11 +2,12 @@
 template <typename T>
 void UnLock_val(T value,const std::string &path){
     const char *TmpPath = path.c_str();
-    if (access(TmpPath, F_OK) == -1) {
+   if (!std::filesystem::exists(path)) {
+        LOG("Warning: ", path, " 不存在");
         return;
     }
 
-    // umount(TmpPath);
+    std::system(("umount " + path).c_str());
 
     // check value
     std::ifstream test(path);
