@@ -19,6 +19,5 @@ add_executable(src
         NodeCtrl.cpp
         Package.cpp
         Profile.cpp
-        Sm8475opt.cpp
         Time.cpp)
         
