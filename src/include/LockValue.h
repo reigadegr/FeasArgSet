@@ -16,11 +16,11 @@ static void lock_val(T value, const std::string &path) {
     }
     */
     if (!std::filesystem::exists(path)) {
-        LOG("Warning: ", path, " 不存在");
+        // LOG("Warning: ", path, " 不存在");
         return;
     }
 
-    std::system(("umount " + path).c_str());
+    std::system(("umount " + path + " 2>/dev/null").c_str());
     // check
     // value
     std::ifstream test(path);
