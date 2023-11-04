@@ -6,3 +6,4 @@ IndentCaseLabels: true
 AlwaysBreakTemplateDeclarations: Yes
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
 #ColumnLimit: 10
+NamespaceIndentation: All
