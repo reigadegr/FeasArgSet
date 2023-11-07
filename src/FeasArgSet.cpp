@@ -9,7 +9,13 @@ auto main(int argc, char **argv) -> int {
     const char *profile = argv[1];
     const char *pathProfile = argv[2];
     // ***新方式，读取文件，没有的话去/sys搜索节点***
+    //  设置游戏内中大核调速器(默认值)
+    std::string middle_big_core_in_game = "performance";
 
+    // 设置非游戏全局调速器(默认值)
+    std::string gov = "schedutil";
+    // 创建结构体动态数组
+    std::vector<listGame> gamesaver;
     // 创建FeasPath的对象feaspath
     FeasPath feaspath;
     // 读取路径配置文件
@@ -19,13 +25,6 @@ auto main(int argc, char **argv) -> int {
         return 2;
     }
 
-    //  设置游戏内中大核调速器(默认值)
-    std::string middle_big_core_in_game = "performance";
-
-    // 设置非游戏全局调速器(默认值)
-    std::string gov = "schedutil";
-    // 创建结构体动态数组
-    std::vector<listGame> gamesaver;
     //  读取包名列表
     if (bool const ReadProfile =
             readProfile(profile, gamesaver, middle_big_core_in_game, gov);

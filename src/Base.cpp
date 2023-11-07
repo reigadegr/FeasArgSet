@@ -68,7 +68,6 @@ auto matching_start(std::vector<listGame> &gamesaver,
             // 成功后把结构体内各个对象的值写入到指定路径
             //...
             Feas_on(&game, &feaspath);
-
             set_middle_big_gov(middle_big_core_in_game);
             // 解锁scaling_max_freq权限
             Allow_system_operation();
