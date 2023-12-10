@@ -27,7 +27,7 @@ compile_start() {
 	echo "开始编译，大概10秒完成"
 	# this common from user : shadow3aaa
 	/data/data/com.termux/files/usr/bin/aarch64-linux-android-clang++ \
-	-static \
+	-L/system/lib64 -lc++ -ldl -lc -lm \
 	-flto=fill -flto-jobs=8 \
     -Wall -fomit-frame-pointer -std=c++2b -stdlib=libc++ -Os -flto \
     -fno-rtti -fvisibility=hidden -static-libgcc -static-libstdc++ \

@@ -4,7 +4,10 @@
 
 #include "include/GameList.h"
 #include "include/function.h"
-
+template <typename T>
+const T &clamp(const T &v, const T &lo, const T &hi) {
+    return v < lo ? lo : v > hi ? hi : v;
+}
 auto readProfile(const char *profile, std::vector<listGame> &profit,
                  std::string &middle_big_core_in_game, std::string &global_gov)
     -> bool {
@@ -63,8 +66,8 @@ auto readProfile(const char *profile, std::vector<listGame> &profit,
                 fps = closest;
             }
 
-            scaling_a = std::clamp(scaling_a, -1000, 1000);
-            scaling_b = std::clamp(scaling_b, -1000, 1000);
+            scaling_a = clamp(scaling_a, -1000, 1000);
+            scaling_b = clamp(scaling_b, -1000, 1000);
 
             profit.insert(profit.begin(),
                           {name, fps, scaling_a, scaling_b,
