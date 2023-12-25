@@ -12,6 +12,25 @@ wait_until_login() {
 }
 wait_until_login
 
+wait_until_login_pandora() {
+    # in case of /data encryption is disabled
+    if [ "$(uname -a | grep Pandora)" != "" ]; then
+        while true; do
+            if [ ! -f /sys/module/*/parameters/perfmgr_enable ]; then
+                sleep 1
+            else
+                break
+            fi
+        done
+    fi
+
+    # in case of the user unlocked the screen
+    while [ ! -d "/sdcard/Android" ]; do
+        sleep 1
+    done
+}
+wait_until_login_pandora
+
 MODDIR=${0%/*}
 FileName="FeasArgSet"
 
