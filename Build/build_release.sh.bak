@@ -53,7 +53,7 @@ compile_start() {
     "
     for i in $header_list2; do
         echo "删除字节头: $i"
-        nohup /data/data/com.termux/files/usr/bin/objcopy --remove-section=$i $output >/dev/null 2>&1 &
+        /data/data/com.termux/files/usr/bin/objcopy --remove-section=$i $output
     done
 	cp -f $output $for_test
 	chmod +x $for_test

@@ -1,9 +1,9 @@
+#include "include/LockValue.h"
+#include "include/function.h"
+#include <fstream>
 #include <sstream>
 #include <thread>
 #include <vector>
-
-#include "include/LockValue.h"
-#include "include/function.h"
 
 // 把第一个节点的值写到另一个节点(lock_val方法)
 auto Get1To2(const std::string &input, const std::string &output) -> bool {
@@ -17,7 +17,7 @@ auto Get1To2(const std::string &input, const std::string &output) -> bool {
     input_path >> value;
     input_path.close();
 
-    lock_val(value, output);
+    lock_val(value, output.c_str());
 
     return true;
 }
